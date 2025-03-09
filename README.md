@@ -1,4 +1,4 @@
-# RedMi AND XIAOMI AC2100 OpenWrt
+# CUDY TR3000 OpenWrt
 
 # Plug -in
 ```text
