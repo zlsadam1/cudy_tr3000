@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt R2100
+name: Build OpenWrt CUDY TR3000
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
 env:
   SYSTEM_NAME: openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: OpenWrt-R2100.config
+  CONFIG_FILE: OpenWrt-TR3000.config
   DIY_P1_SH: OpenWrt-part1.sh
   DIY_P2_SH: OpenWrt-part2.sh
   UPLOAD_BIN_DIR: true
