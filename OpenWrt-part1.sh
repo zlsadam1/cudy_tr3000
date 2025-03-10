@@ -43,6 +43,12 @@ function git_sparse_clone() {
 addFeeds custom https://github.com/kenzok8/openwrt-packages.git
 addFeeds small https://github.com/kenzok8/small.git
 
+# 支持 turboacc
+# 不带 shortcut-fe
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
+# 带  不带 shortcut-fe
+# curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+
 # 关机
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 # 应用过滤
