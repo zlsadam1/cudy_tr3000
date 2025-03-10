@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt CUDY TR3000
+name: Build OpenWrt Opkg CUDY TR3000
 
 on:
   workflow_dispatch:
