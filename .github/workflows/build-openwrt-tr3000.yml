@@ -18,7 +18,7 @@ on:
 env:
   SYSTEM_NAME: openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: OpenWrt-TR3000.config
+  CONFIG_FILE: Openwrt-OPKG-TR3000.config
   DIY_P1_SH: OpenWrt-part1.sh
   DIY_P2_SH: OpenWrt-part2.sh
   UPLOAD_BIN_DIR: true
