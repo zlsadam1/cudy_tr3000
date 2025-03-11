@@ -47,7 +47,7 @@ jobs:
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
         sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
-        sudo -E apt-get -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev binutils-gold ca-certificates default-jdk devscripts ecj file fuse g++ gawk gcc gengetopt gnupg groff java-wrappers java-propose-classpath jq libc6-dev libffi-dev libpcre3-dev libsqlite3-dev  libxml-parser-perl lz4 make ocaml ocaml-findlib ocaml-nox pkg-config python3-dev python3-distutils python3-yaml ruby sharutils u-boot-tools uuid-dev vim-common zip clang libz-dev libbz2-dev libicu-dev
+        sudo -E apt-get -y install  ccache  curl git libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool p7zip p7zip-full unzip vim wget jq libc6-dev libffi-dev libpcre3-dev libsqlite3-dev  zip gzip
 
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
