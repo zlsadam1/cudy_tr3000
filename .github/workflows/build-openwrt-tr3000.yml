@@ -11,7 +11,7 @@ env:
   CONFIG_FILE: OpenWrt-OPKG-TR3000.config
   DIY_P1_SH: OpenWrt-part1.sh
   DIY_P2_SH: diy-script.sh
-  CLASH_KERNEL: aarch64
+  CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
