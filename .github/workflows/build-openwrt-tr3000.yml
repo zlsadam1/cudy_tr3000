@@ -118,8 +118,11 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $DIY_P2_SH
         cd $OPENWRT_PATH
+        echo -e "$DIY_P2_SH"
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        echo -e "preset-terminal-tools.sh"
         $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+         echo -e "preset-adguard-core.sh"
         $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
     - name: Download DL Package
