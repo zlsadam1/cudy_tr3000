@@ -1,4 +1,4 @@
-name: CUDY_TR3000_V1_114M
+name: CUDY_TR3000_V1_114M_OPKG
 
 on:
   workflow_dispatch:
