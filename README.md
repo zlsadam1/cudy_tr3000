@@ -1,23 +1,41 @@
 # CUDY TR3000 OpenWrt
 
+# Version 
+```text
+  CUDY_TR3000_V1_114M_APK    :  snapshot latest
+  CUDY_TR3000_V1_114M_OP_2410:  releases
+```
+
 # Plug -in
 ```text
-luci-app-autoreboot
-luci-app-ddns
-luci-app-firewall
-luci-app-https-dns-proxy
-luci-app-nft-qos
-luci-app-oaf
-luci-app-onliner
-luci-app-pushbot
-luci-app-ttyd
-luci-app-uhttpd
-luci-app-upnp
-luci-app-wifischedule
-luci-app-wolplus
-luci-app-wrtbwmon
 luci-proto-ipv6
 luci-proto-wireguard
+luci-proto-relay
+luci-app-ddns
+luci-app-diskman
+luci-app-samba4
+luci-app-filemanager
+luci-app-hd-idle
+luci-app-poweroff
+luci-app-autoreboot
+luci-app-adguardhome
+luci-app-https-dns-proxy
+luci-app-ttyd
+luci-app-pushbot
+luci-app-oaf
+luci-app-socat
+luci-app-nft-qos
+luci-app-wol
+luci-app-upnp
+luci-app-uhttpd
+luci-app-wifischedule
+luci-app-onliner
+luci-app-wrtbwmon
+luci-app-turboacc
+luci-app-xxxxwall
+luci-app-temp-status
+luci-app-usb-printer
+luci-theme-argon
 ```
 
 # Actions-OpenWrt
