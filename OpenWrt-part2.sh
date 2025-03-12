@@ -10,25 +10,21 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
+# 修改 分区大小，默认 mod 分区大小为 112MB：0x7000000。改为 114MB：0x7200000
+sed -i '/label = "ubi"/{n;s/reg = <0x5c0000 0x[0-9a-f]\+>/reg = <0x5c0000 0x7200000>/}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
+
 #Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.0.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
-# 以下配置已改为固件内的defsetting服务进行设置
+# 更改默认 Shell 为 zsh
+sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+
 # 修改设备名称
 sed -i 's/OpenWrt/cudy/g' package/base-files/files/bin/config_generate
-# 修改时区(貌似没有起作用)
-#sed -i 's/UTC/CST-8/g' package/base-files/files/bin/config_generate
-#sed -i "/timezone/a\\\t\tset system.@system[-1].zonename='Asia\/Shanghai'" package/base-files/files/bin/config_generate
 
 # 修改 argon 为默认主题,可根据你喜欢的修改成其他的（不选择那些会自动改变为默认主题的主题才有效果）
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-
-# 修改 分区大小，默认 mod 分区大小为 112MB：0x7000000。改为 114MB：0x7200000
-sed -i '/label = "ubi"/{n;s/reg = <0x5c0000 0x[0-9a-f]\+>/reg = <0x5c0000 0x7200000>/}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
-
-# 报错修复
-ln -s /usr/bin/upx /workdir/openwrt/staging_dir/host/bin/
 
 #允许root用户编译
 export FORCE_UNSAFE_CONFIGURE=1
