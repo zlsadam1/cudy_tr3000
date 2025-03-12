@@ -8,7 +8,7 @@ system="system.@system[0]"
 uci batch<<EOF
 	set $system.zonename='Asia/Shanghai'
 	set $system.timezone='CST-8'
-	set network.lan.ipaddr='192.168.0.1'
+	set network.lan.ipaddr='192.168.2.1'
 	set network.globals.packet_steering='1'
         # 删除 IPv6 前缀
         # uci del network.globals.ula_prefix
@@ -20,7 +20,7 @@ service system restart
 
 # 设置默认shell为bash
 if [ -e /bin/bash ];then
-	sed -i 's,/ash,/bash,g' /etc/passwd
+	sed -i 's,/ash,/zsh,g' /etc/passwd
 fi
 
 # 设置软件源为中科大
