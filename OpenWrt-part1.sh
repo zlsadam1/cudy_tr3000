@@ -71,4 +71,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-prin
 # KMS 
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-vlmcsd vlmcsd
 
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-socat dns2socks ipt2socks microsocks
+# luci-app-airplay2
+git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
+
+git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
