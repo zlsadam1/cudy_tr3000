@@ -3,6 +3,14 @@
 
 system="system.@system[0]"
 
+[ "$(uci -q get $system.zonename)" = "Asia/Shanghai" ] && exit 0
+
+uci batch<<EOF
+	set $system.zonename='Asia/Shanghai'
+	set $system.timezone='CST-8'
+	commit
+EOF
+
 service network restart
 service system restart
 
