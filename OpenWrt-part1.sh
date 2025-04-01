@@ -69,7 +69,9 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-wrtbwmon
 # usb打印+网络唤醒Plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-printer luci-app-wolplus
 # KMS 
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-vlmcsd vlmcsd
+# git_sparse_clone main https://github.com/kenzok8/small-package luci-app-vlmcsd vlmcsd
+git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
+git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
 
 # luci-app-airplay2
 git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
