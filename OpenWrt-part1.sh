@@ -73,6 +73,9 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-prin
 git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
 git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
 
+# 4G Model
+git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
+
 # luci-app-airplay2
 # git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
