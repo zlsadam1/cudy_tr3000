@@ -74,6 +74,6 @@ git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
 git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
 
 # luci-app-airplay2
-git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
+# git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
