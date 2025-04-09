@@ -80,22 +80,3 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 # git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
-
-
-echo -e "view log check br-lan ip"
-cat package/base-files/files/bin/config_generate |grep 192
-
-# clean conflict plugin
-echo -e "clean conflict plugin"
-find ./ -name xray-core
-cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
-cat feeds/small/xray-core/Makefile |grep PKG_VERSION
-cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
-rm -rf ./package/feeds/packages/xray-core
-rm -rf ./feeds/packages/net/xray-core
-echo -e "=========================================================="
-find ./ -name xray-core
-cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
-cat feeds/small/xray-core/Makefile |grep PKG_VERSION
-cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
-echo -e "=========================================================="
