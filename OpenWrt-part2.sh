@@ -44,4 +44,5 @@ rm -rf ./package/feeds/packages/xray-core
 rm -rf ./feeds/packages/net/xray-core
 echo -e "=========================================================="
 find ./ -name xray-core
+cat feeds/small/xray-core/Makefile |grep PKG_VERSION
 echo -e "=========================================================="
