@@ -28,3 +28,23 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 
 #允许root用户编译
 export FORCE_UNSAFE_CONFIGURE=1
+
+
+# change br-lan ip
+echo -e "view log check br-lan ip"
+cat package/base-files/files/bin/config_generate |grep 192
+
+# clean conflict plugin
+echo -e "clean conflict plugin"
+find ./ -name xray-core
+cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
+cat feeds/small/xray-core/Makefile |grep PKG_VERSION
+cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
+rm -rf ./package/feeds/packages/xray-core
+rm -rf ./feeds/packages/net/xray-core
+echo -e "=========================================================="
+find ./ -name xray-core
+cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
+cat feeds/small/xray-core/Makefile |grep PKG_VERSION
+cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
+echo -e "=========================================================="
