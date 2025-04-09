@@ -34,15 +34,24 @@ export FORCE_UNSAFE_CONFIGURE=1
 echo -e "view log check br-lan ip"
 cat package/base-files/files/bin/config_generate |grep 192
 
+echo -e "=========================================================="
 # clean conflict plugin
 echo -e "clean conflict plugin"
+echo -e "find ./ -name xray-core"
+
 find ./ -name xray-core
 cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
 cat feeds/small/xray-core/Makefile |grep PKG_VERSION
 cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
+
+echo -e "delete conflict plugin"
 rm -rf ./package/feeds/packages/xray-core
 rm -rf ./feeds/packages/net/xray-core
-echo -e "=========================================================="
+
+echo -e "----------------------------------------------------------"
+
+echo -e "check xray-core"
 find ./ -name xray-core
 cat feeds/small/xray-core/Makefile |grep PKG_VERSION
+
 echo -e "=========================================================="
