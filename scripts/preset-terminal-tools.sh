@@ -37,7 +37,17 @@ rm -rf Xray-linux-arm64-v8a
 # 清理下载的压缩包
 rm Xray-linux-arm64-v8a.zip
 
-# Get .zshrc dotfile
-cp $GITHUB_WORKSPACE/scripts/.zshrc .
-
 popd
+
+# log
+echo -e "ls -lh files"
+ls -lh files
+
+echo -e "ls -lh files/root"
+ls -lh files/root/
+
+echo -e "ls -lh files/usr"
+ls -lh files/usr/
+
+echo -e "ls -lh files/usr/bin"
+ls -lh files/usr/bin/
