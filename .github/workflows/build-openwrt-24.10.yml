@@ -7,7 +7,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: v24.10.0
   CONFIG_FILE: OpenWrt-OPKG-TR3000.config
   DIY_P1_SH: OpenWrt-part1.sh
   DIY_P2_SH: OpenWrt-part2.sh
@@ -66,7 +66,7 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
