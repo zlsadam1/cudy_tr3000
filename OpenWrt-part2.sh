@@ -35,27 +35,27 @@ echo -e "view log check br-lan ip"
 cat package/base-files/files/bin/config_generate |grep 192
 
 # change core version
-echo -e "=========================================================="
-LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+#echo -e "=========================================================="
+#LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 
-if [ -z "$LATEST_VERSION" ]; then
-  echo "Error: Unable to fetch the latest version of xray-core from GitHub, please check network or API limitations"
-  exit 1
-fi
+#if [ -z "$LATEST_VERSION" ]; then
+#  echo "Error: Unable to fetch the latest version of xray-core from GitHub, please check network or API limitations"
+#  exit 1
+#fi
 
-for dir in $(find ./ -name "xray-core" -type d); do
-  MAKEFILE="$dir/Makefile"
-  if [ -f "$MAKEFILE" ]; then
-    echo "Makefile path: $MAKEFILE"
+#for dir in $(find ./ -name "xray-core" -type d); do
+#  MAKEFILE="$dir/Makefile"
+#  if [ -f "$MAKEFILE" ]; then
+#    echo "Makefile path: $MAKEFILE"
     
-    sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$LATEST_VERSION/" "$MAKEFILE"
-    sed -i "s|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://codeload.github.com/XTLS/Xray-core/tar.gz/v$LATEST_VERSION?|" "$MAKEFILE"
+#    sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$LATEST_VERSION/" "$MAKEFILE"
+#    sed -i "s|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://codeload.github.com/XTLS/Xray-core/tar.gz/v$LATEST_VERSION?|" "$MAKEFILE"
     
-    echo "已将 xray-core 更新到最新版本：$LATEST_VERSION"
-    cat "$MAKEFILE" | grep "PKG_VERSION"
-  else
-    echo "Makefile not found in $dir"
-  fi
-done
+#    echo "已将 xray-core 更新到最新版本：$LATEST_VERSION"
+#    cat "$MAKEFILE" | grep "PKG_VERSION"
+#  else
+#    echo "Makefile not found in $dir"
+#  fi
+#done
 
-echo -e "=========================================================="
+#echo -e "=========================================================="
