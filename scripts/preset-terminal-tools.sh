@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p files/root
+mkdir -p files/usr/bin
 pushd files/root
 
 # Clone oh-my-zsh repository
