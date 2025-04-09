@@ -39,15 +39,28 @@ rm Xray-linux-arm64-v8a.zip
 
 popd
 
+
 # log
 echo -e "ls -lh files"
 ls -lh files
+echo ""
+
+echo -e "ls -lh files/etc"
+ls -lh files/etc
+echo ""
 
 echo -e "ls -lh files/root"
 ls -lh files/root/
+echo ""
+
+echo -e "ls -lh files/root/.oh-my-zsh"
+ls -lh files/root/.oh-my-zsh
+echo ""
 
 echo -e "ls -lh files/usr"
 ls -lh files/usr/
+echo ""
 
 echo -e "ls -lh files/usr/bin"
 ls -lh files/usr/bin/
+echo ""
