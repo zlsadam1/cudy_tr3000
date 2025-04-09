@@ -36,22 +36,25 @@ cat package/base-files/files/bin/config_generate |grep 192
 
 echo -e "=========================================================="
 # clean conflict plugin
-echo -e "clean conflict plugin"
-echo -e "find ./ -name xray-core"
 
-find ./ -name xray-core
-cat package/feeds/packages/xray-core/Makefile |grep PKG_VERSION
-cat feeds/small/xray-core/Makefile |grep PKG_VERSION
-cat feeds/packages/net/xray-core/Makefile |grep PKG_VERSION
+LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 
-echo -e "delete conflict plugin"
-rm -rf ./package/feeds/packages/xray-core
-rm -rf ./feeds/packages/net/xray-core
+if [ -z "$LATEST_VERSION" ]; then
+  echo "Error: Unable to fetch the latest version of xray-core from GitHub, please check network or API limitations"
+  exit 1
+fi
 
-echo -e "----------------------------------------------------------"
+XRAY_MAKEFILE=$(find ./ -name "xray-core" -type d | head -n 1)/Makefile
 
-echo -e "check xray-core"
-find ./ -name xray-core
-cat feeds/small/xray-core/Makefile |grep PKG_VERSION
+if [ ! -f "$XRAY_MAKEFILE" ]; then
+  echo "error: Makefile for xray-core not found"
+  exit 1
+fi
 
+sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$LATEST_VERSION/" "$XRAY_MAKEFILE"
+
+sed -i "s|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://codeload.github.com/XTLS/Xray-core/tar.gz/v$LATEST_VERSION?|" "$XRAY_MAKEFILE"
+
+echo "已将 xray-core 更新到最新版本：$LATEST_VERSION"
+cat "$XRAY_MAKEFILE" | grep "PKG_VERSION"
 echo -e "=========================================================="
