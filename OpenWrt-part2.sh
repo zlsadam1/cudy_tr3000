@@ -43,17 +43,19 @@ if [ -z "$LATEST_VERSION" ]; then
   exit 1
 fi
 
-XRAY_MAKEFILE=$(find ./ -name "xray-core" -type d | head -n 1)/Makefile
+for dir in $(find ./ -name "xray-core" -type d); do
+  MAKEFILE="$dir/Makefile"
+  if [ -f "$MAKEFILE" ]; then
+    echo "Makefile path: $MAKEFILE"
+    
+    sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$LATEST_VERSION/" "$MAKEFILE"
+    sed -i "s|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://codeload.github.com/XTLS/Xray-core/tar.gz/v$LATEST_VERSION?|" "$MAKEFILE"
+    
+    echo "已将 xray-core 更新到最新版本：$LATEST_VERSION"
+    cat "$MAKEFILE" | grep "PKG_VERSION"
+  else
+    echo "Makefile not found in $dir"
+  fi
+done
 
-if [ ! -f "$XRAY_MAKEFILE" ]; then
-  echo "error: Makefile for xray-core not found"
-  exit 1
-fi
-
-sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$LATEST_VERSION/" "$XRAY_MAKEFILE"
-
-sed -i "s|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://codeload.github.com/XTLS/Xray-core/tar.gz/v$LATEST_VERSION?|" "$XRAY_MAKEFILE"
-
-echo "已将 xray-core 更新到最新版本：$LATEST_VERSION"
-cat "$XRAY_MAKEFILE" | grep "PKG_VERSION"
 echo -e "=========================================================="
