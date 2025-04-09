@@ -3,7 +3,7 @@
 # Version 
 ```text
   CUDY_TR3000_V1_114M_APK    :  snapshot latest
-  CUDY_TR3000_V1_114M_OP_2410:  releases
+  CUDY_TR3000_V1_114M_OP_24_10_0:  tag v24.10.0
 ```
 
 # Config
