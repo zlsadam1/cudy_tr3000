@@ -1,4 +1,4 @@
-name: CUDY_TR3000_V1_114M_OP_2410
+name: CUDY_TR3000_V1_114M_OP_24_10_0
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: CUDY_TR3000_V1_114M_OP_2410
+  FIRMWARE_TAG: CUDY_TR3000_V1_114M_OP_24_10_0
   TZ: Asia/Shanghai
 
 jobs:
