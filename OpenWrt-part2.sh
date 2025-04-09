@@ -34,9 +34,8 @@ export FORCE_UNSAFE_CONFIGURE=1
 echo -e "view log check br-lan ip"
 cat package/base-files/files/bin/config_generate |grep 192
 
+# change core version
 echo -e "=========================================================="
-# clean conflict plugin
-
 LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 
 if [ -z "$LATEST_VERSION" ]; then
