@@ -28,7 +28,12 @@ curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xr
 # 解压缩压缩包到指定目录
 unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
 
-# 移动 xray 文件到 /usr/bin 目录
+echo -e "压缩 xray"
+ls -lh  Xray-linux-arm64-v8a
+upx -5 Xray-linux-arm64-v8a/xray
+echo -e "压缩完成"
+ls -lh  Xray-linux-arm64-v8a
+echo -e "移动 xray 文件到 /usr/bin 目录"
 mv Xray-linux-arm64-v8a/xray .
 
 ls ./
