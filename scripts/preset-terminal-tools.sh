@@ -20,16 +20,17 @@ popd
 mkdir -p files/usr/bin
 pushd files/usr/bin
 
-# LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-# curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
-#unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
+LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
+unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
+rm Xray-linux-arm64-v8a.zip
 # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-# upx --best Xray-linux-arm64-v8a/xray
-#ls -lh  Xray-linux-arm64-v8a
-#mv Xray-linux-arm64-v8a/xray .
-#ls -lh ./
-#rm -rf Xray-linux-arm64-v8a
-#rm Xray-linux-arm64-v8a.zip
+upx --best Xray-linux-arm64-v8a/xray
+mv Xray-linux-arm64-v8a/xray .
+
+rm -rf Xray-linux-arm64-v8a
+ls -lh ./
+
 
 
 #LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
