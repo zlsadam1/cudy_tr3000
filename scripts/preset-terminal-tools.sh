@@ -25,14 +25,17 @@ LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/la
 # 下载压缩包
 curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
 
-# 解压缩压缩包到指定目录
+echo -e "xray v$LATEST_VERSION 解压"
 unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
 
-echo -e "压缩 xray"
 ls -lh  Xray-linux-arm64-v8a
-upx -5 Xray-linux-arm64-v8a/xray
-echo -e "压缩完成"
+echo -e "xray v$LATEST_VERSION 压缩"
+# 0：无损 2：标准 3: 较高 9:最高 best：最佳
+upx --best Xray-linux-arm64-v8a/xray
+
+echo -e "xray v$LATEST_VERSION 压缩完成"
 ls -lh  Xray-linux-arm64-v8a
+
 echo -e "移动 xray 文件到 /usr/bin 目录"
 mv Xray-linux-arm64-v8a/xray .
 
@@ -41,6 +44,32 @@ ls ./
 rm -rf Xray-linux-arm64-v8a
 # 清理下载的压缩包
 rm Xray-linux-arm64-v8a.zip
+
+
+# AdGuardHome
+LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+
+# 下载压缩包
+curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
+
+echo -e "AdGuardHome v$LATEST_VERSION 解压"
+tar -zxvf AdGuardHome_linux_arm64.tar.gz
+
+echo -e "AdGuardHome v$LATEST_VERSION 压缩"
+ls -lh  Xray-linux-arm64-v8a
+# 0：无损 2：标准 3: 较高 9:最高 best：最佳
+upx --best AdGuardHome/AdGuardHome
+
+echo -e "AdGuardHome v$LATEST_VERSION 压缩完成"
+ls -lh  Xray-linux-arm64-v8a
+
+echo -e "移动 AdGuardHome 文件到 /usr/bin 目录"
+mv AdGuardHome/AdGuardHome .
+
+ls ./
+
+rm -rf AdGuardHome/
+rm  AdGuardHome_linux_arm64.tar.gz
 
 popd
 
