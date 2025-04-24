@@ -39,7 +39,7 @@ ls -lh  Xray-linux-arm64-v8a
 echo -e "移动 xray 文件到 /usr/bin 目录"
 mv Xray-linux-arm64-v8a/xray .
 
-ls ./
+ls -lh ./
 # 删除解压后的目录（假设解压后目录名为 Xray-linux-arm64-v8a）
 rm -rf Xray-linux-arm64-v8a
 # 清理下载的压缩包
@@ -56,19 +56,20 @@ echo -e "AdGuardHome v$LATEST_VERSION 解压"
 tar -zxvf AdGuardHome_linux_arm64.tar.gz
 
 echo -e "AdGuardHome v$LATEST_VERSION 压缩"
-ls -lh  Xray-linux-arm64-v8a
+mv AdGuardHome AdGuardHome_temp
+ls -lh  AdGuardHome_temp
 # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-upx --best AdGuardHome/AdGuardHome
+upx --best AdGuardHome_temp/AdGuardHome
 
 echo -e "AdGuardHome v$LATEST_VERSION 压缩完成"
-ls -lh  Xray-linux-arm64-v8a
+ls -lh  AdGuardHome_temp
 
 echo -e "移动 AdGuardHome 文件到 /usr/bin 目录"
-mv AdGuardHome/AdGuardHome .
+mv AdGuardHome_temp/AdGuardHome .
 
-ls ./
+ls -lh ./
 
-rm -rf AdGuardHome/
+rm -rf AdGuardHome_temp/
 rm  AdGuardHome_linux_arm64.tar.gz
 
 popd
