@@ -46,7 +46,7 @@ jobs:
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
         sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
-        sudo -E apt-get -y install  ccache  curl git libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool p7zip p7zip-full unzip vim wget jq libc6-dev libffi-dev libpcre3-dev libsqlite3-dev  zip gzip upx
+        sudo -E apt-get -y install  ccache  curl git libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool p7zip p7zip-full unzip vim wget jq libc6-dev libffi-dev libpcre3-dev libsqlite3-dev  zip gzip upx tree
 
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
@@ -124,6 +124,38 @@ jobs:
         echo -e "preset-terminal-tools.sh"
         $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
 
+        du -h $OPENWRT_PATH/files
+        tree -ifh $OPENWRT_PATH/files
+    - name: Download xray
+      run: |
+        cd $OPENWRT_PATH
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+        curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
+        unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
+        rm Xray-linux-arm64-v8a.zip
+        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+        upx --best Xray-linux-arm64-v8a/xray
+
+        mkdir -p $OPENWRT_PATH/files/usr/bin
+        mv Xray-linux-arm64-v8a/xray $OPENWRT_PATH/files/usr/bin/
+        ls -lh
+        du -h $OPENWRT_PATH/files
+        tree -ifh $OPENWRT_PATH/files
+    - name: Download AdGuardHome
+      run: |
+        cd $OPENWRT_PATH
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+        curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
+        tar -zxvf AdGuardHome_linux_arm64.tar.gz
+        mv AdGuardHome AdGuardHome_temp
+        ls -lh  AdGuardHome_temp
+        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+        upx --best AdGuardHome_temp/AdGuardHome
+        ls -lh  AdGuardHome_temp
+        mv AdGuardHome_temp/AdGuardHome $OPENWRT_PATH/files/usr/bin/
+        ls -lh 
+        du -h $OPENWRT_PATH/files
+        tree -ifh $OPENWRT_PATH/files
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
