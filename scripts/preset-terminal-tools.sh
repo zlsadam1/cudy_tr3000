@@ -33,18 +33,18 @@ ls -lh ./
 
 
 
-#LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-#curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
-#tar -zxvf AdGuardHome_linux_arm64.tar.gz
-#mv AdGuardHome AdGuardHome_temp
-#ls -lh  AdGuardHome_temp
+LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
+tar -zxvf AdGuardHome_linux_arm64.tar.gz
+mv AdGuardHome AdGuardHome_temp
+ls -lh  AdGuardHome_temp
 # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-#upx --best AdGuardHome_temp/AdGuardHome
-#ls -lh  AdGuardHome_temp
-#mv AdGuardHome_temp/AdGuardHome .
-#ls -lh ./
-#rm -rf AdGuardHome_temp/
-#rm  AdGuardHome_linux_arm64.tar.gz
+upx --best AdGuardHome_temp/AdGuardHome
+ls -lh  AdGuardHome_temp
+mv AdGuardHome_temp/AdGuardHome .
+ls -lh ./
+rm -rf AdGuardHome_temp/
+rm  AdGuardHome_linux_arm64.tar.gz
 
 popd
 
