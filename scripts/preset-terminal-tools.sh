@@ -45,15 +45,19 @@ case "$ACTION" in
         # 滑块开关打开（例如启用 Wi-Fi）
         logger "Slider switch turned ON - Enabling Wi-Fi"
         wifi up
-        # 点亮白色 LED（表示状态）
-        echo 1 > /sys/class/leds/led-1/brightness
+        # 点亮白色 LED（white:status）
+        echo 1 > /sys/class/leds/white:status/brightness
+        # 关闭红色 LED（red:power）
+        echo 0 > /sys/class/leds/red:power/brightness
         ;;
     released)
         # 滑块开关关闭（例如禁用 Wi-Fi）
         logger "Slider switch turned OFF - Disabling Wi-Fi"
         wifi down
-        # 关闭白色 LED
-        echo 0 > /sys/class/leds/led-1/brightness
+        # 关闭白色 LED（white:status）
+        echo 0 > /sys/class/leds/white:status/brightness
+        # 点亮红色 LED（red:power）
+        echo 1 > /sys/class/leds/red:power/brightness
         ;;
 esac
 EOF
