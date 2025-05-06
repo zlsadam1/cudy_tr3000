@@ -17,3 +17,39 @@ rm -rf ./.oh-my-zsh/.git
 cp $GITHUB_WORKSPACE/scripts/.zshrc .
 
 popd
+
+
+
+# Slider switch wifi off on 
+
+
+mkdir -p files/etc/rc.button
+pushd files/etc/rc.button
+
+touch mode
+chmod +x mode
+
+cat << 'EOF' >> mode
+#!/bin/sh
+
+BUTTON=${BUTTON:-"mode"}
+ACTION=${ACTION:-"pressed"}
+SEEN=${SEEN:-0}
+
+logger "Button $BUTTON was $ACTION for $SEEN seconds"
+
+case "$ACTION" in
+    pressed)
+        logger "Slider switch turned ON - Enabling Wi-Fi"
+        wifi up
+        echo 1 > /sys/class/leds/led-1/brightness
+        ;;
+    released)
+        logger "Slider switch turned OFF - Disabling Wi-Fi"
+        wifi down
+        echo 0 > /sys/class/leds/led-1/brightness
+        ;;
+esac
+EOF
+
+popd
