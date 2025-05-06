@@ -48,6 +48,9 @@ addFeeds small https://github.com/kenzok8/small.git
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
 # 带  不带 shortcut-fe
 # curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+# shortcut-fe
+git_sparse_clone package https://github.com/chenmozhijin/turboacc shortcut-fe
+
 
 # 关机
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -80,3 +83,6 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 # git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
+
+# remove 
+rm -rf feeds/small/{luci-app-bypass,luci-app-ssr-plus}
