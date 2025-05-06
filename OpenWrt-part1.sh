@@ -84,5 +84,8 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
 
+
+# 
+./scripts/feeds update -a
 # remove 
 rm -rf feeds/small/{luci-app-bypass,luci-app-ssr-plus}
