@@ -170,9 +170,9 @@ jobs:
           ${{ env.OPENWRT_PATH }}/staging_dir
           ${{ env.OPENWRT_PATH }}/build_dir
           ${{ env.OPENWRT_PATH }}/.ccache
-        key: build-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ hashFiles('**/.config', '**/feeds.conf.default', '**/feeds.conf') }}
+        key: build-${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         restore-keys: |
-          build-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-
+          build-${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
 
 
     - name: Compile Firmware
