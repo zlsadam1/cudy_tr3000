@@ -207,10 +207,10 @@ jobs:
         docker rmi $(docker images -q)
         docker volume rm $(docker volume ls -q)
         docker system prune -a --volumes -f
-        sudo systemctl stop docker
-        sudo -E apt-get -y purge docker-ce docker-ce-cli containerd.io
-        sudo rm -rf /var/lib/docker
-        sudo rm -rf /var/lib/containerd
+        # sudo systemctl stop docker
+        # sudo -E apt-get -y purge docker-ce docker-ce-cli containerd.io
+        # sudo rm -rf /var/lib/docker
+        # sudo rm -rf /var/lib/containerd
         sudo -E apt-get -y autoremove
         
         df -hT        
