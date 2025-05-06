@@ -32,21 +32,27 @@ chmod +x mode
 cat << 'EOF' >> mode
 #!/bin/sh
 
-BUTTON=${BUTTON:-"mode"}
-ACTION=${ACTION:-"pressed"}
-SEEN=${SEEN:-0}
+# 按键事件参数
+BUTTON=${BUTTON:-"mode"}  # 按键名称
+ACTION=${ACTION:-"pressed"} # 动作（pressed 或 released）
+SEEN=${SEEN:-0}            # 按下时间（秒）
 
 logger "Button $BUTTON was $ACTION for $SEEN seconds"
 
+# 定义滑块开关功能
 case "$ACTION" in
     pressed)
+        # 滑块开关打开（例如启用 Wi-Fi）
         logger "Slider switch turned ON - Enabling Wi-Fi"
         wifi up
+        # 点亮白色 LED（表示状态）
         echo 1 > /sys/class/leds/led-1/brightness
         ;;
     released)
+        # 滑块开关关闭（例如禁用 Wi-Fi）
         logger "Slider switch turned OFF - Disabling Wi-Fi"
         wifi down
+        # 关闭白色 LED
         echo 0 > /sys/class/leds/led-1/brightness
         ;;
 esac
