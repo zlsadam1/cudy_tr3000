@@ -185,7 +185,7 @@ jobs:
         
         export USE_CCACHE=1
         export CCACHE_DIR=$OPENWRT_PATH/.ccache
-        ccache -M 5G  # 设置 ccache 最大缓存大小为 5GB
+        ccache -M 2G
         
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
@@ -196,7 +196,7 @@ jobs:
       if: always()
       run: |
         cd $OPENWRT_PATH
-        rm -rf tmp/* package/* feeds/* .git/
+        rm -rf tmp/* package/* feeds/* .git/ dl/* files/*
         find . -name "*.o" -exec rm -f {} \;
         df -hT        
 
