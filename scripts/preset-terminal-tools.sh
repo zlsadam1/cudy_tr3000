@@ -52,4 +52,7 @@ case "$ACTION" in
 esac
 EOF
 
+echo "cat mode "
+cat mode
+
 popd
