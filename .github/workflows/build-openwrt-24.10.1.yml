@@ -89,7 +89,36 @@ jobs:
         echo "DEVICE_TARGET=$DEVICE_TARGET" >> $GITHUB_ENV
         DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
         echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
-
+        
+    - name: Configure Kernel Options
+      run: |
+        cd $OPENWRT_PATH
+        # 调试：列出 build_dir 内容
+        echo "Listing build_dir contents:"
+        ls -R build_dir
+        # 查找内核目录
+        KERNEL_DIR=$(find build_dir -type d -name "linux-*" | head -n 1)
+        if [ -z "$KERNEL_DIR" ]; then
+          echo "Error: Kernel directory not found!"
+          exit 1
+        fi
+        echo "Kernel directory: $KERNEL_DIR"
+        # 使用 scripts/config 修改内核配置
+        cd $KERNEL_DIR
+        $OPENWRT_PATH/scripts/config/conf --enable CONFIG_INPUT
+        $OPENWRT_PATH/scripts/config/conf --enable CONFIG_INPUT_KEYBOARD
+        $OPENWRT_PATH/scripts/config/conf --enable CONFIG_KEYBOARD_GPIO
+        $OPENWRT_PATH/scripts/config/conf --enable CONFIG_GPIO_SYSFS
+        # 运行 make olddefconfig
+        make -C $OPENWRT_PATH V=s olddefconfig
+        # 验证配置
+        echo "Verifying kernel configuration..."
+        grep "CONFIG_INPUT=y" .config && echo "CONFIG_INPUT enabled" || { echo "Failed to enable CONFIG_INPUT"; exit 1; }
+        grep "CONFIG_INPUT_KEYBOARD=y" .config && echo "CONFIG_INPUT_KEYBOARD enabled" || { echo "Failed to enable CONFIG_INPUT_KEYBOARD"; exit 1; }
+        grep "CONFIG_KEYBOARD_GPIO=y" .config && echo "CONFIG_KEYBOARD_GPIO enabled" || { echo "Failed to enable CONFIG_KEYBOARD_GPIO"; exit 1; }
+        grep "CONFIG_GPIO_SYSFS=y" .config && echo "CONFIG_GPIO_SYSFS enabled" || { echo "Failed to enable CONFIG_GPIO_SYSFS"; exit 1; }
+        cd $OPENWRT_PATH
+        
     - name: Cache Toolchain
       if: env.CACHE_TOOLCHAIN == 'true'
       uses: HiGarfield/cachewrtbuild@main
@@ -141,6 +170,7 @@ jobs:
         ls -lh
         du -h $OPENWRT_PATH/files
         tree -ifh $OPENWRT_PATH/files
+        
     - name: Download AdGuardHome
       run: |
         cd $OPENWRT_PATH
@@ -156,6 +186,7 @@ jobs:
         ls -lh 
         du -h $OPENWRT_PATH/files
         tree -ifh $OPENWRT_PATH/files
+        
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
