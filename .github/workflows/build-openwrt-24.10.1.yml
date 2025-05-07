@@ -168,42 +168,49 @@ jobs:
 
     - name: Modify Kernel Config
       run: |
-        # Get kernel version
         cd $OPENWRT_PATH
-        KERNEL_VERSION=6.6
+        # Find the config file and extract the kernel version
+        CONFIG_FILE=$(ls target/linux/mediatek/filogic/config-* 2>/dev/null)
+        if [ -z "$CONFIG_FILE" ]; then
+          echo "Error: No config file found in target/linux/mediatek/filogic/"
+          exit 1
+        fi
+
+        # Extract version from filename (e.g., "6.6" from "config-6.6")
+        KERNEL_VERSION=$(echo "$CONFIG_FILE" | sed 's/target\/linux\/mediatek\/filogic\/config-//' | tr -d ' ')
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
         # Determine Kernel Config File Path
-        KERNEL_CONFIG_FILE="target/linux/mediatek/filogic/config-${KERNEL_VERSION}"
+        KERNEL_CONFIG_FILE="$CONFIG_FILE" # No need to rebuild path, we already have it
+        echo "KERNEL_CONFIG_FILE=$KERNEL_CONFIG_FILE" >> $GITHUB_ENV
 
-        # Check if the config file exists
+        # Check if the config file exists (redundant, but good practice)
         if [ ! -f "$KERNEL_CONFIG_FILE" ]; then
           echo "Error: Kernel config file not found: $KERNEL_CONFIG_FILE"
           exit 1
         fi
-        echo "KERNEL_CONFIG_FILE=$KERNEL_CONFIG_FILE" >> $GITHUB_ENV
+
 
         # Function to ensure a config option is enabled
         ensure_config_enabled() {
-          CONFIG_OPTION="\$1"
-          ./scripts/config -d "$CONFIG_OPTION"
-          ./scripts/config -e "$CONFIG_OPTION"
+            CONFIG_OPTION="\$1"
+            if grep -q "^$CONFIG_OPTION=y" "$KERNEL_CONFIG_FILE"; then
+              echo "$CONFIG_OPTION is already enabled."
+            elif grep -q "^# $CONFIG_OPTION is not set" "$KERNEL_CONFIG_FILE"; then
+              sed -i "s/^# $CONFIG_OPTION is not set/$CONFIG_OPTION=y/" "$KERNEL_CONFIG_FILE"
+              echo "Enabled $CONFIG_OPTION."
+            elif ! grep -q "^$CONFIG_OPTION=" "$KERNEL_CONFIG_FILE"; then
+              echo "$CONFIG_OPTION not found, adding it."
+              echo "$CONFIG_OPTION=y" >> "$KERNEL_CONFIG_FILE"
+            else
+              echo "$CONFIG_OPTION found but in unknown state, please check manually."
+            fi
         }
 
-        # Apply configurations to the config file first
-        cp "$KERNEL_CONFIG_FILE" .config
-
-        # Make sure .config is present
-        make defconfig
-
-        # Enable options
         ensure_config_enabled "CONFIG_INPUT"
         ensure_config_enabled "CONFIG_INPUT_KEYBOARD"
         ensure_config_enabled "CONFIG_KEYBOARD_GPIO"
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
-
-        # Update the config file
-        cp .config "$KERNEL_CONFIG_FILE"
         
     - name: Compile Firmware
       id: compile
