@@ -126,37 +126,38 @@ jobs:
 
         du -h $OPENWRT_PATH/files
         tree -ifh $OPENWRT_PATH/files
-    # - name: Download xray
-    #   run: |
-    #     cd $OPENWRT_PATH
-    #     LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-    #     curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
-    #     unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
-    #     rm Xray-linux-arm64-v8a.zip
-    #     # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-    #     upx --best Xray-linux-arm64-v8a/xray
-
-    #     mkdir -p $OPENWRT_PATH/files/usr/bin
-    #     mv Xray-linux-arm64-v8a/xray $OPENWRT_PATH/files/usr/bin/
-    #     ls -lh
-    #     du -h $OPENWRT_PATH/files
-    #     tree -ifh $OPENWRT_PATH/files
         
-    # - name: Download AdGuardHome
-    #   run: |
-    #     cd $OPENWRT_PATH
-    #     LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-    #     curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
-    #     tar -zxvf AdGuardHome_linux_arm64.tar.gz
-    #     mv AdGuardHome AdGuardHome_temp
-    #     ls -lh  AdGuardHome_temp
-    #     # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-    #     upx --best AdGuardHome_temp/AdGuardHome
-    #     ls -lh  AdGuardHome_temp
-    #     mv AdGuardHome_temp/AdGuardHome $OPENWRT_PATH/files/usr/bin/
-    #     ls -lh 
-    #     du -h $OPENWRT_PATH/files
-    #     tree -ifh $OPENWRT_PATH/files
+    - name: Download xray
+      run: |
+        cd $OPENWRT_PATH
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+        curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
+        unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
+        rm Xray-linux-arm64-v8a.zip
+        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+        upx --best Xray-linux-arm64-v8a/xray
+
+        mkdir -p $OPENWRT_PATH/files/usr/bin
+        mv Xray-linux-arm64-v8a/xray $OPENWRT_PATH/files/usr/bin/
+        ls -lh
+        du -h $OPENWRT_PATH/files
+        tree -ifh $OPENWRT_PATH/files
+        
+    - name: Download AdGuardHome
+      run: |
+        cd $OPENWRT_PATH
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+        curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
+        tar -zxvf AdGuardHome_linux_arm64.tar.gz
+        mv AdGuardHome AdGuardHome_temp
+        ls -lh  AdGuardHome_temp
+        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+        upx --best AdGuardHome_temp/AdGuardHome
+        ls -lh  AdGuardHome_temp
+        mv AdGuardHome_temp/AdGuardHome $OPENWRT_PATH/files/usr/bin/
+        ls -lh 
+        du -h $OPENWRT_PATH/files
+        tree -ifh $OPENWRT_PATH/files
         
     - name: Download DL Package
       run: |
@@ -211,6 +212,10 @@ jobs:
         ensure_config_enabled "CONFIG_INPUT_KEYBOARD"
         ensure_config_enabled "CONFIG_KEYBOARD_GPIO"
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
+        
+        cat "$KERNEL_CONFIG_FILE" |grep CONFIG_INPUT
+        cat "$KERNEL_CONFIG_FILE" |grep GPIO
+
         
     - name: Compile Firmware
       id: compile
