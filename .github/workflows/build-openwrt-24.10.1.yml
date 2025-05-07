@@ -126,37 +126,37 @@ jobs:
 
         du -h $OPENWRT_PATH/files
         tree -ifh $OPENWRT_PATH/files
-    - name: Download xray
-      run: |
-        cd $OPENWRT_PATH
-        LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-        curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
-        unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
-        rm Xray-linux-arm64-v8a.zip
-        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-        upx --best Xray-linux-arm64-v8a/xray
+    # - name: Download xray
+    #   run: |
+    #     cd $OPENWRT_PATH
+    #     LATEST_VERSION=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+    #     curl -LO https://github.com/XTLS/Xray-core/releases/download/v$LATEST_VERSION/Xray-linux-arm64-v8a.zip
+    #     unzip Xray-linux-arm64-v8a.zip -d Xray-linux-arm64-v8a
+    #     rm Xray-linux-arm64-v8a.zip
+    #     # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+    #     upx --best Xray-linux-arm64-v8a/xray
 
-        mkdir -p $OPENWRT_PATH/files/usr/bin
-        mv Xray-linux-arm64-v8a/xray $OPENWRT_PATH/files/usr/bin/
-        ls -lh
-        du -h $OPENWRT_PATH/files
-        tree -ifh $OPENWRT_PATH/files
+    #     mkdir -p $OPENWRT_PATH/files/usr/bin
+    #     mv Xray-linux-arm64-v8a/xray $OPENWRT_PATH/files/usr/bin/
+    #     ls -lh
+    #     du -h $OPENWRT_PATH/files
+    #     tree -ifh $OPENWRT_PATH/files
         
-    - name: Download AdGuardHome
-      run: |
-        cd $OPENWRT_PATH
-        LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-        curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
-        tar -zxvf AdGuardHome_linux_arm64.tar.gz
-        mv AdGuardHome AdGuardHome_temp
-        ls -lh  AdGuardHome_temp
-        # 0：无损 2：标准 3: 较高 9:最高 best：最佳
-        upx --best AdGuardHome_temp/AdGuardHome
-        ls -lh  AdGuardHome_temp
-        mv AdGuardHome_temp/AdGuardHome $OPENWRT_PATH/files/usr/bin/
-        ls -lh 
-        du -h $OPENWRT_PATH/files
-        tree -ifh $OPENWRT_PATH/files
+    # - name: Download AdGuardHome
+    #   run: |
+    #     cd $OPENWRT_PATH
+    #     LATEST_VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+    #     curl -LO https://github.com/AdguardTeam/AdGuardHome/releases/download/v$LATEST_VERSION/AdGuardHome_linux_arm64.tar.gz
+    #     tar -zxvf AdGuardHome_linux_arm64.tar.gz
+    #     mv AdGuardHome AdGuardHome_temp
+    #     ls -lh  AdGuardHome_temp
+    #     # 0：无损 2：标准 3: 较高 9:最高 best：最佳
+    #     upx --best AdGuardHome_temp/AdGuardHome
+    #     ls -lh  AdGuardHome_temp
+    #     mv AdGuardHome_temp/AdGuardHome $OPENWRT_PATH/files/usr/bin/
+    #     ls -lh 
+    #     du -h $OPENWRT_PATH/files
+    #     tree -ifh $OPENWRT_PATH/files
         
     - name: Download DL Package
       run: |
@@ -170,11 +170,11 @@ jobs:
       run: |
         # Get kernel version
         cd $OPENWRT_PATH
-        KERNEL_VERSION=$(grep KERNEL_PATCHVER include/kernel.mk | sed 's/KERNEL_PATCHVER:=//g' | tr -d ' ')
+        KERNEL_VERSION=6.6
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
         # Determine Kernel Config File Path
-        KERNEL_CONFIG_FILE="target/linux/mediatek-filogic/config-${KERNEL_VERSION}"
+        KERNEL_CONFIG_FILE="target/linux/mediatek/filogic/config-${KERNEL_VERSION}"
 
         # Check if the config file exists
         if [ ! -f "$KERNEL_CONFIG_FILE" ]; then
