@@ -78,6 +78,38 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
 
+    - name: Configure Kernel Options
+      run: |
+        cd $OPENWRT_PATH
+        # 确定目标架构的内核目录
+        KERNEL_DIR=$(find build_dir -type d -name "linux-mediatek_*" | head -n 1)
+        if [ -z "$KERNEL_DIR" ]; then
+          echo "Error: Kernel directory not found!"
+          exit 1
+        fi
+        echo "Kernel directory: $KERNEL_DIR"
+        # 备份原始内核配置
+        cp $KERNEL_DIR/.config $KERNEL_DIR/.config.bak
+        # 检查并启用内核选项
+        echo "Enabling kernel options..."
+        for option in CONFIG_INPUT CONFIG_INPUT_KEYBOARD CONFIG_KEYBOARD_GPIO CONFIG_GPIO_SYSFS; do
+          if grep -q "^$option=" $KERNEL_DIR/.config; then
+            sed -i "s/^$option=.*/$option=y/" $KERNEL_DIR/.config
+          else
+            echo "$option=y" >> $KERNEL_DIR/.config
+          fi
+        done
+        # 运行 make olddefconfig 以确保配置一致性
+        cd $KERNEL_DIR
+        make -C $OPENWRT_PATH V=s olddefconfig
+        # 验证配置是否生效
+        echo "Verifying kernel configuration..."
+        grep "CONFIG_INPUT=y" .config && echo "CONFIG_INPUT enabled" || { echo "Failed to enable CONFIG_INPUT"; exit 1; }
+        grep "CONFIG_INPUT_KEYBOARD=y" .config && echo "CONFIG_INPUT_KEYBOARD enabled" || { echo "Failed to enable CONFIG_INPUT_KEYBOARD"; exit 1; }
+        grep "CONFIG_KEYBOARD_GPIO=y" .config && echo "CONFIG_KEYBOARD_GPIO enabled" || { echo "Failed to enable CONFIG_KEYBOARD_GPIO"; exit 1; }
+        grep "CONFIG_GPIO_SYSFS=y" .config && echo "CONFIG_GPIO_SYSFS enabled" || { echo "Failed to enable CONFIG_GPIO_SYSFS"; exit 1; }
+        cd $OPENWRT_PATH
+        
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
