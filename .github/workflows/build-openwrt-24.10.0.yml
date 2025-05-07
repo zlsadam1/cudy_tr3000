@@ -95,6 +95,7 @@ jobs:
       uses: HiGarfield/cachewrtbuild@main
       with:
         ccache: true
+        toolchain: true
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
 
@@ -162,19 +163,7 @@ jobs:
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    # - name: Cache Toolchain, Build Artifacts, and ccache
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: |
-    #       ${{ env.OPENWRT_PATH }}/staging_dir
-    #       ${{ env.OPENWRT_PATH }}/build_dir
-    #       ${{ env.OPENWRT_PATH }}/.ccache
-    #     key: build-${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
-    #     restore-keys: |
-    #       build-${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
-
-
+        
     - name: Compile Firmware
       id: compile
       run: |
