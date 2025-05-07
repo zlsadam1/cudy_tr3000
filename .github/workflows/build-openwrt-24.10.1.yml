@@ -213,14 +213,6 @@ jobs:
         ensure_config_enabled "CONFIG_KEYBOARD_GPIO"
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
         
-    - name: Output Kernel Configuration
-      run: |
-        cd $OPENWRT_PATH
-        echo "--- CONFIG_INPUT ---"
-        cat "$KERNEL_CONFIG_FILE" | grep CONFIG_INPUT
-        echo "--- GPIO ---"
-        cat "$KERNEL_CONFIG_FILE" | grep GPIO
-        
     - name: Compile Firmware
       id: compile
       run: |
