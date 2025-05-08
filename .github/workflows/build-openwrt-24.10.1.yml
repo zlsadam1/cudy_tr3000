@@ -194,7 +194,7 @@ jobs:
 
         # Function to ensure a config option is enabled
         ensure_config_enabled() {
-            CONFIG_OPTION="\$1"
+            CONFIG_OPTION="$1"
             if grep -q "^$CONFIG_OPTION=y" "$KERNEL_CONFIG_FILE"; then
               echo "$CONFIG_OPTION is already enabled."
             elif grep -q "^# $CONFIG_OPTION is not set" "$KERNEL_CONFIG_FILE"; then
