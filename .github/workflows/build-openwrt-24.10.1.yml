@@ -212,6 +212,8 @@ jobs:
         ensure_config_enabled "CONFIG_INPUT_KEYBOARD"
         ensure_config_enabled "CONFIG_KEYBOARD_GPIO"
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
+        ensure_config_enabled "CONFIG_OF_GPIO"
+        ensure_config_enabled "CONFIG_GPIO_CDEV"
         
     - name: Compile Firmware
       id: compile
