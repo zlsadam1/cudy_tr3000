@@ -207,8 +207,8 @@ jobs:
               echo "$CONFIG_OPTION found but in unknown state, please check manually."
             fi
         }
-
         ensure_config_enabled "CONFIG_INPUT"
+        ensure_config_enabled "CONFIG_INPUT_EVDEV"
         ensure_config_enabled "CONFIG_INPUT_KEYBOARD"
         ensure_config_enabled "CONFIG_KEYBOARD_GPIO"
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
