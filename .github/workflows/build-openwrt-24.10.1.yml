@@ -214,7 +214,8 @@ jobs:
         ensure_config_enabled "CONFIG_GPIO_SYSFS"
         ensure_config_enabled "CONFIG_OF_GPIO"
         ensure_config_enabled "CONFIG_GPIO_CDEV"
-        
+        echo "target/linux/mediatek/filogic/config-6.6"
+        cat target/linux/mediatek/filogic/config-6.6
     - name: Compile Firmware
       id: compile
       run: |
