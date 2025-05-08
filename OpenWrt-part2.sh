@@ -13,7 +13,7 @@
 sed -i '/mode {/,/};/ {
     s/linux,code = <BTN_0>;/linux,code = <KEY_MODE>;/g
     /linux,input-type = <EV_SW>;/d
-}' target/linux/mediatek/dts/mt7981-cudy-tr3000-v1.dts
+}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
 echo "target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts"
 cat target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
 
