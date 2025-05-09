@@ -10,9 +10,10 @@
 Config Buildinfo here: [config.buildinfo](https://github.com/nova-boop/cudy_tr3000/releases/download/CUDY_TR3000_V1_114M_APK/config.buildinfo)
 Config config here: [openwrt-tr3000.config](https://raw.githubusercontent.com/nova-boop/cudy_tr3000/refs/heads/main/OpenWrt-OPKG-TR3000.config)
 
-# enable Slider switch
+# Enable Slider switch
 ```text
-"Slider Function Key Custom Configuration" shell: /usr/bin/handle-keys.sh
+  "Slider Function Key Custom Configuration"
+  shell: /usr/bin/handle-keys.sh
 ```
 
 # Plug -in
