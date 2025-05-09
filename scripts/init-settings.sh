@@ -6,6 +6,8 @@ uci commit luci
 
 chmod +x /usr/bin/handle-keys.sh
 chmod +x /etc/init.d/handle-keys
+
+/etc/init.d/handle-keys enable
 /etc/init.d/handle-keys start
 
 # Disable IPV6 ula prefix
