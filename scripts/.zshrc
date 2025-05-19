@@ -69,7 +69,7 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git command-not-found extract z docker zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
-plugins=(command-not-found extract z)
+plugins=(git command-not-found extract z)
 
 source $ZSH/oh-my-zsh.sh
 
