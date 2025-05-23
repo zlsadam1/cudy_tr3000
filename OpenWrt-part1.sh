@@ -80,9 +80,9 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-prin
 # git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
 
 # 2
-git_sparse_clone main https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
+git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
 
-# 2
+# 3
 # git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
 # git clone https://github.com/AutoCONFIG/luci-app-vlmcsd package/luci-app-vlmcsd
 
