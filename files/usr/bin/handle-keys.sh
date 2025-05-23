@@ -16,12 +16,12 @@ while true; do
                 # echo 0 > /sys/class/leds/white:status/brightness
                 # echo 1 > /sys/class/leds/red:power/brightness
             fi
-        elif echo "$line" | grep -q "type 1 (EV_KEY), code 408 (KEY_RESTART)"; then
-            if echo "$line" | grep -q "value 1"; then
-                echo "Reset button pressed"
-                # logger "Reset button pressed"
-                # reboot
-            fi
+#        elif echo "$line" | grep -q "type 1 (EV_KEY), code 408 (KEY_RESTART)"; then
+#            if echo "$line" | grep -q "value 1"; then
+#                echo "Reset button pressed"
+#                logger "Reset button pressed"
+#                reboot
+#            fi
         fi
     done
 done
