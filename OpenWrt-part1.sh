@@ -74,8 +74,18 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-wrtbwmon
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-printer luci-app-wolplus
 # KMS 
 # git_sparse_clone main https://github.com/kenzok8/small-package luci-app-vlmcsd vlmcsd
-git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
-git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
+
+# 1
+# git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
+# git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
+
+# 2
+git_sparse_clone main https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
+
+# 2
+# git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
+# git clone https://github.com/AutoCONFIG/luci-app-vlmcsd package/luci-app-vlmcsd
+
 
 # SMS tools
 git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
