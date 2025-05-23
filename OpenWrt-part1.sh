@@ -58,8 +58,9 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 # 钉钉推送
 git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
-# 端口转发
-git clone --depth=1 https://github.com/chenmozhijin/luci-app-socat package/luci-app-socat
+# 端口转发 A luci app of socat for nftables
+git clone --depth=1 https://github.com/WROIATE/luci-app-socat package/luci-app-socat
+
 # 定时重启
 git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
 # 磁盘管理
