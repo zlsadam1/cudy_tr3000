@@ -19,8 +19,8 @@ while true; do
         elif echo "$line" | grep -q "type 1 (EV_KEY), code 408 (KEY_RESTART)"; then
             if echo "$line" | grep -q "value 1"; then
                 echo "Reset button pressed"
-                logger "Reset button pressed"
-                reboot
+                # logger "Reset button pressed"
+                # reboot
             fi
         fi
     done
