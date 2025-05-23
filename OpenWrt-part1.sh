@@ -59,7 +59,7 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFil
 # 钉钉推送
 git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 # 端口转发 A luci app of socat for nftables
-git clone --depth=1 https://github.com/WROIATE/luci-app-socat package/luci-app-socat
+# git clone --depth=1 https://github.com/WROIATE/luci-app-socat package/luci-app-socat
 
 # 定时重启
 git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
