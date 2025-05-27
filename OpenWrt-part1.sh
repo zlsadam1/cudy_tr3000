@@ -51,41 +51,37 @@ curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turbo
 # shortcut-fe
 git_sparse_clone package https://github.com/chenmozhijin/turboacc shortcut-fe
 
-
 # 关机
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+
 # 应用过滤
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+
 # 钉钉推送
 git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
+
 # 端口转发 A luci app of socat for nftables
 # git clone --depth=1 https://github.com/WROIATE/luci-app-socat package/luci-app-socat
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-socat 
 
 # 定时重启
 git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
+
 # 磁盘管理
 git clone --depth=1 https://github.com/lisaac/luci-app-diskman package/luci-app-diskman
+
 # 温度插件
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # 带宽监控+在线设备，相互依赖
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-wrtbwmon wrtbwmon luci-app-onliner
+
 # usb打印+网络唤醒Plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-printer luci-app-wolplus
-# KMS 
-# git_sparse_clone main https://github.com/kenzok8/small-package luci-app-vlmcsd vlmcsd
 
-# 1
-# git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
-# git clone https://github.com/ssuperh/luci-app-vlmcsd-new.git package/luci-app-vlmcsd
-
-# 2
+# kms
 git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
 
-# 3
-# git_sparse_clone main https://github.com/kenzok8/small-package vlmcsd
-# git clone https://github.com/AutoCONFIG/luci-app-vlmcsd package/luci-app-vlmcsd
 
 
 # SMS tools
