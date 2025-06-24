@@ -55,7 +55,7 @@ git_sparse_clone package https://github.com/chenmozhijin/turboacc shortcut-fe
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 
 # 应用过滤
-git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+git clone -b v6.1.3  https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
 # 钉钉推送
 git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
