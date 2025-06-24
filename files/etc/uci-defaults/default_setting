@@ -46,8 +46,6 @@ fi
 
 if [ -e /usr/bin/handle-keys.sh ];then
 	chmod +x /usr/bin/handle-keys.sh
-EOF
-	service ttyd restart
 fi
 
 exit 0
