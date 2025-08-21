@@ -1,4 +1,4 @@
-name: CUDY_TR3000_V1_114M_OP_24_10_0
+name: CUDY_TR3000_V1_114M_OP_24_10
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: v24.10.0
+  REPO_BRANCH: v24.10
   CONFIG_FILE: OpenWrt-OPKG-TR3000.config
   DIY_P1_SH: OpenWrt-part1.sh
   DIY_P2_SH: OpenWrt-part2.sh
