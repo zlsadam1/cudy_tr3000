@@ -1,4 +1,4 @@
-# CUDY TR3000 OpenWrt
+# CUDY TR3000 OpenWrt 便携路由，可USB网络共享
 
 # Version 
 ```text
