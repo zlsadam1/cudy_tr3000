@@ -24,8 +24,8 @@ echo "target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts"
 cat target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
 
 #Modify default IP
-sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.0.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.102.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.0.1/192.168.102.1/g' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
