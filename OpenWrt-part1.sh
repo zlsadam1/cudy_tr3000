@@ -57,13 +57,6 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 # 应用过滤
 git clone -b v6.1.3  https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
-# 钉钉推送
-git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
-
-# 端口转发 A luci app of socat for nftables
-# git clone --depth=1 https://github.com/WROIATE/luci-app-socat package/luci-app-socat
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-socat 
-
 # 定时重启
 git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
 
@@ -76,19 +69,8 @@ git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luc
 # 带宽监控+在线设备，相互依赖
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-wrtbwmon wrtbwmon luci-app-onliner
 
-# usb打印+网络唤醒Plus
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-printer luci-app-wolplus
-
 # kms
 git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
-
-
-
-# SMS tools
-git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
-
-# luci-app-airplay2
-# git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
 
