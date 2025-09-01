@@ -166,6 +166,10 @@ jobs:
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;   
+        
+    - name: Show .config
+      run: |
+        cat $OPENWRT_PATH/.config
 
     - name: Compile Firmware
       id: compile
