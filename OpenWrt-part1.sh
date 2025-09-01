@@ -83,6 +83,13 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-usb-prin
 git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
 
 
+# natmapt
+# git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/openwrt-stuntman.git package/stuntman
+# git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-natmapt.git package/luci-app-natmapt
+git_sparse_clone master https://github.com/muink/openwrt-stuntman stuntman
+git_sparse_clone master https://github.com/muink/luci-app-natmapt luci-app-natmapt
+
+
 
 # SMS tools
 git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
