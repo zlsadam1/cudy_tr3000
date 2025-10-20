@@ -99,11 +99,6 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 
 git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
 
-
-# change golang version
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
-
 # cd OpenWrt buildroot 
 # mkdir -p "package/cdnspeedtest"
 # curl -fL "https://raw.githubusercontent.com/immortalwrt/packages/master/net/cdnspeedtest/Makefile" | sed 's,../../lang,$(TOPDIR)/feeds/packages/lang,' > "package/cdnspeedtest/Makefile"
