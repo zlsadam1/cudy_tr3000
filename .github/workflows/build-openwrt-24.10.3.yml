@@ -171,6 +171,18 @@ jobs:
       run: |
         cat $OPENWRT_PATH/.config
 
+    - name: change golang version
+      run: |
+        # change golang version
+        echo "ls -lh golang"
+        ls -lh feeds/packages/lang/golang
+        rm -rf feeds/packages/lang/golang
+        echo "ls -lg rm -rf golang"
+        echo "download change golang version"
+        git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+        echo "show golang path"
+        ls -lh feeds/packages/lang/golang
+        
     - name: Compile Firmware
       id: compile
       run: |
