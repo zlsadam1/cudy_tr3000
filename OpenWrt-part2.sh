@@ -35,6 +35,9 @@
 echo "target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts"
 cat target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
 
+echo "target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi"
+cat target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi 
+
 #Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.0.1/192.168.2.1/g' package/base-files/files/bin/config_generate
