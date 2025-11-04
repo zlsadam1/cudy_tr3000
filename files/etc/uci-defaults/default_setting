@@ -1,51 +1,54 @@
 #!/bin/sh
-#Power By Qs315490
+# Power By Qs315490
 
-system="system.@system[0]"
+system_cfg="system.@system[0]"
+config_dir="/etc/config"
 
-[ "$(uci -q get $system.zonename)" = "Asia/Shanghai" ] && exit 0
-
+# --- 1. 时区设置 ---
+# 无论是否已设置，均执行配置，但避免不必要的 service restart
 uci batch<<EOF
-	set $system.zonename='Asia/Shanghai'
-	set $system.timezone='CST-8'
-	commit
+	set ${system_cfg}.zonename='Asia/Shanghai'
+	set ${system_cfg}.timezone='CST-8'
+	commit system
 EOF
+# service system restart # <-- 移除不必要的重启
 
-service network restart
-service system restart
-
-# 设置默认shell为bash
-#if [ -e /bin/bash ];then
-#	sed -i 's,/ash,/zsh,g' /etc/passwd
-#fi
-
-# 设置软件源为中科大
+# --- 2. 设置软件源为中科大 ---
 sed -i 's_downloads.openwrt.org_mirrors.ustc.edu.cn/openwrt_' /etc/opkg/distfeeds.conf
 
-config="/etc/config"
-
-if [ -e $config/ttyd ];then
+# --- 3. TTYD 配置 (检查初始化脚本更准确) ---
+if [ -e /etc/init.d/ttyd ];then
 	uci batch<<EOF
-	set ttyd.@ttyd[0].command='/bin/login -f root' # ttyd免登录
-	del ttyd.@ttyd[0].interface # 防止无法访问
-	commit
+	set ttyd.@ttyd[0].command='/bin/login -f root'
+	del ttyd.@ttyd[0].interface
+	commit ttyd
 EOF
-	service ttyd restart
+	# service ttyd restart # <-- 移除不必要的重启
 fi
 
-#if [ -e $config/upnpd ];then
-#	upnp="upnpd.config"
-#	uci batch<<EOF
-#	set $upnp.enabled='1'
-#	set $upnp.external_ip='223.5.5.5' # 跳过公网IP验证
-#	commit
-#EOF
-#	service miniupnpd restart
-#fi
-
-
+# --- 4. 赋予按键脚本权限 ---
 if [ -e /usr/bin/handle-keys.sh ];then
 	chmod +x /usr/bin/handle-keys.sh
 fi
 
+# --- 5. 配置长按重置功能 (使用 uci add 创建新配置，避免覆盖) ---
+if [ -e /etc/hotplug.d/button/00-reset ];then
+	chmod +x /etc/hotplug.d/button/00-reset
+	
+	# 检查是否已存在 reset 按钮配置，如果不存在则添加新的配置
+    if ! uci show system | grep -q 'system.reset.button'; then
+        # 创建一个新的 button 配置块，并获取其 uci ID
+        NEW_BUTTON_CFG=$(uci add system button)
+        uci set ${NEW_BUTTON_CFG}.button='reset'
+        uci set ${NEW_BUTTON_CFG}.action='held'
+        uci set ${NEW_BUTTON_CFG}.handler='/etc/hotplug.d/button/00-reset'
+		# 长按 5 秒 执行 /etc/hotplug.d/button/00-reset
+        uci set ${NEW_BUTTON_CFG}.min='5000'
+        uci commit system
+        
+        logger -t uci-defaults "Configured reset button long-press handler."
+    fi
+fi
+
+# 退出前，让系统在所有 uci-defaults 配置完成后自动完成重启/重载配置。
 exit 0
