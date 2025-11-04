@@ -1,9 +1,9 @@
-# CUDY TR3000 V1_114M OpenWrt
+# CUDY TR3000 V1 114M OpenWrt
 
 # Version 
 ```text
   CUDY_TR3000_V1_114M_APK    :  snapshot latest
-  CUDY_TR3000_V1_114M_OP_24_10_0:  tag v24.10.0
+  CUDY_TR3000_V1_114M_OP_24_10_4:  tag v24.10.4
 ```
 
 # Config
