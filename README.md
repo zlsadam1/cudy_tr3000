@@ -1,4 +1,4 @@
-# CUDY TR3000 OpenWrt
+# CUDY TR3000 V1_114M OpenWrt
 
 # Version 
 ```text
