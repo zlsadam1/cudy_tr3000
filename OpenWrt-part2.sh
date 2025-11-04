@@ -20,6 +20,9 @@ sed -i '/mode {/,/};/ {
 # 修改 分区大小，默认 mod 分区大小为 112MB：0x7000000。改为 114MB：0x7200000
 sed -i '/label = "ubi"/{n;s/reg = <0x5c0000 0x[0-9a-f]\+>/reg = <0x5c0000 0x7200000>/}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
 
+# 定位到包含 &ubi 的行，进入下一行(n)，然后替换(s)  version > 24.10.1
+sed -i '/&ubi/ { n; s/reg = <0x5c0000 0x[0-9a-f]\+>;/reg = <0x5c0000 0x7200000>;/; }' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
+
 echo "target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts"
 cat target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts 
 
