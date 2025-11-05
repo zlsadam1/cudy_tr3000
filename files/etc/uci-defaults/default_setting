@@ -31,23 +31,19 @@ if [ -e /usr/bin/handle-keys.sh ];then
 	chmod +x /usr/bin/handle-keys.sh
 fi
 
-# --- 5. 配置长按重置功能 (使用 uci add 创建新配置，避免覆盖) ---
+# --- 5. 配置长按重置功能 (可靠的单行 uci set 语法) ---
 if [ -e /etc/hotplug.d/button/00-reset ];then
 	chmod +x /etc/hotplug.d/button/00-reset
 	
-	# 检查是否已存在 reset 按钮配置，如果不存在则添加新的配置
-    if ! uci show system | grep -q 'system.reset.button'; then
-        # 创建一个新的 button 配置块，并获取其 uci ID
-        NEW_BUTTON_CFG=$(uci add system button)
-        uci set ${NEW_BUTTON_CFG}.button='reset'
-        uci set ${NEW_BUTTON_CFG}.action='held'
-        uci set ${NEW_BUTTON_CFG}.handler='/etc/hotplug.d/button/00-reset'
-		# 长按 5 秒 执行 /etc/hotplug.d/button/00-reset
-        uci set ${NEW_BUTTON_CFG}.min='5000'
-        uci commit system
-        
-        logger -t uci-defaults "Configured reset button long-press handler."
-    fi
+    # 使用单行链式命令，确保所有选项都被原子性设置
+    uci set system.reset_btn='button' && \
+    uci set system.reset_btn.button='reset' && \
+    uci set system.reset_btn.action='held' && \
+    uci set system.reset_btn.handler='/etc/hotplug.d/button/00-reset' && \
+    uci set system.reset_btn.min='5000' && \
+    uci commit system
+    
+    logger -t uci-defaults "Configured reset button long-press handler via reliable method."
 fi
 
 # --- 6. 启用 handle-keys 服务自启动 ---
