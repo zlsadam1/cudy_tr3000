@@ -31,11 +31,7 @@ if [ -e /usr/bin/handle-keys.sh ];then
 	chmod +x /usr/bin/handle-keys.sh
 fi
 
-# 提交更改
-uci commit system
-logger -t uci-defaults "Disabled reset button short-press action via dedicated handler."
-
-# --- 6. 启用 handle-keys 服务自启动 ---
+# --- 5. 启用 handle-keys 服务自启动 ---
 if [ -e /etc/init.d/handle-keys ];then
     # 确保执行权限
     chmod +x /etc/init.d/handle-keys
