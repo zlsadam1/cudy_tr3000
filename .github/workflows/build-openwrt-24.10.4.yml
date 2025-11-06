@@ -140,7 +140,7 @@ jobs:
         
         echo " change dts "
         cat "$GITHUB_WORKSPACE/dts/mt7981b-cudy-tr3000-v1.dts" > target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
-        cat "$GITHUB_WORKSPACE/dts/mt7981b-cudy-tr3000-v1.dtsi" > target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi
+        # cat "$GITHUB_WORKSPACE/dts/mt7981b-cudy-tr3000-v1.dtsi" > target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi
         
         echo -e "$GITHUB_WORKSPACE/$DIY_P2_SH"
         $GITHUB_WORKSPACE/$DIY_P2_SH
