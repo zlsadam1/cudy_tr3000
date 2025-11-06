@@ -31,20 +31,9 @@ if [ -e /usr/bin/handle-keys.sh ];then
 	chmod +x /usr/bin/handle-keys.sh
 fi
 
-# --- 5. 配置长按重置功能 (可靠的单行 uci set 语法) ---
-if [ -e /etc/hotplug.d/button/00-reset ];then
-	chmod +x /etc/hotplug.d/button/00-reset
-	
-    # 使用单行链式命令，确保所有选项都被原子性设置
-    uci set system.reset_btn='button' && \
-    uci set system.reset_btn.button='reset' && \
-    uci set system.reset_btn.action='held' && \
-    uci set system.reset_btn.handler='/etc/hotplug.d/button/00-reset' && \
-    uci set system.reset_btn.min='5000' && \
-    uci commit system
-    
-    logger -t uci-defaults "Configured reset button long-press handler via reliable method."
-fi
+# 提交更改
+uci commit system
+logger -t uci-defaults "Disabled reset button short-press action via dedicated handler."
 
 # --- 6. 启用 handle-keys 服务自启动 ---
 if [ -e /etc/init.d/handle-keys ];then
