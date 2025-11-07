@@ -3,6 +3,8 @@
 # 设置长按阈值 (秒)
 LONG_PRESS_TIME=5
 
+logger "DEBUG: Reset script started. Action: $ACTION, Seen: $SEEN"
+
 [ "${ACTION}" = "released" ] && {
     
     # SEEN 是按键按下的持续时间（秒），由 kmod-gpio-button-hotplug 提供
@@ -18,3 +20,5 @@ LONG_PRESS_TIME=5
 # 其他 ACTION (如 pressed) 可以根据需要处理或留空
 
 exit 0
+
+# 确保有执行权限 (您的 ls -l 输出显示它已经有了)
