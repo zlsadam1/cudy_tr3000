@@ -16,5 +16,3 @@ case "$ACTION" in
 esac
 exit 0
 
-# 确保有执行权限
-chmod +x /etc/rc.button/mode
