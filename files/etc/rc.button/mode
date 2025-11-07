@@ -2,17 +2,19 @@
 
 # Hotplug 机制会传递 BUTTON, ACTION, SEEN 等环境变量
 
+
+# DEBUG: 检查极性是否反转，如果反转，通常 ACTION:released 对应 ON 状态
+
+logger "DEBUG: Mode script started. Action: $ACTION, Seen: $SEEN"
+
 case "$ACTION" in
-    pressed)
-        logger "模式开关拨到 ON/Pressed (KEY_MODE): 启用 Wi-Fi"
-        # 拨动到 ON 状态的逻辑
+    released) // 此时的释放可能对应了 ON 状态（极性定义与硬件不符）
+        logger "模式开关拨到 ON/Pressed (KEY_MODE) [REVERSED]: 启用 Wi-Fi"
         /sbin/wifi up
         ;;
-    released)
-        logger "模式开关拨到 OFF/Released (KEY_MODE): 禁用 Wi-Fi"
-        # 拨动到 OFF 状态的逻辑
+    pressed) // 此时的按下可能对应了 OFF 状态（极性定义与硬件不符）
+        logger "模式开关拨到 OFF/Released (KEY_MODE) [REVERSED]: 禁用 Wi-Fi"
         /sbin/wifi down
         ;;
 esac
 exit 0
-
