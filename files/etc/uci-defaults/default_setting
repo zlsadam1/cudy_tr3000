@@ -27,23 +27,32 @@ EOF
 fi
 
 # --- 4. 赋予按键脚本权限 ---
-if [ -e /usr/bin/handle-keys.sh ];then
-	chmod +x /usr/bin/handle-keys.sh
-fi
+#if [ -e /usr/bin/handle-keys.sh ];then
+#	chmod +x /usr/bin/handle-keys.sh
+#fi
 
 # --- 5. 启用 handle-keys 服务自启动 ---
-if [ -e /etc/init.d/handle-keys ];then
+#if [ -e /etc/init.d/handle-keys ];then
     # 确保执行权限
-    chmod +x /etc/init.d/handle-keys
+#    chmod +x /etc/init.d/handle-keys
     
     # 启用服务自启动 (创建 S99handle-keys 符号链接)
-    /etc/init.d/handle-keys enable
+#    /etc/init.d/handle-keys enable
     
     # 立即启动服务 (可选，如果想让按键在首次启动就工作)
-    /etc/init.d/handle-keys start
-    
-    logger -t uci-defaults "Enabled and started handle-keys service."
+#	/etc/init.d/handle-keys start   
+#    logger -t uci-defaults "Enabled and started handle-keys service."
+#fi
+
+if [ -e /etc/rc.button/mode ];then
+	chmod +x /etc/rc.button/mode
 fi
+
+if [ -e /etc/rc.button/reset ];then
+	chmod +x /etc/rc.button/reset
+fi
+
 
 # 退出前，让系统在所有 uci-defaults 配置完成后自动完成重启/重载配置。
 exit 0
+
