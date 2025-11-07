@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 定义要监听的事件文件和按键代码
-EVENT_FILE="/dev/input/event1"
+EVENT_FILE="/dev/input/event0"
 KEY_CODE="373"
 KEY_NAME="KEY_MODE"
 
