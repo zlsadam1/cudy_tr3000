@@ -28,13 +28,13 @@ if [ -e /etc/hotplug.d/button/buttons ];then
 fi
 
 # Config Restart Button
-uci add system button
-uci set system.@button[-1].button="reset"
-uci set system.@button[-1].action="released"
-uci set system.@button[-1].handler="firstboot && reboot"
-uci set system.@button[-1].min="5"
-uci set system.@button[-1].max="30"
-uci commit system
+# uci add system button
+# uci set system.@button[-1].button="reset"
+# uci set system.@button[-1].action="released"
+# uci set system.@button[-1].handler="firstboot && reboot"
+# uci set system.@button[-1].min="5"
+# uci set system.@button[-1].max="30"
+# uci commit system
 
 
 # 退出前，让系统在所有 uci-defaults 配置完成后自动完成重启/重载配置。
