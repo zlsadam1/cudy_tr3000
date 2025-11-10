@@ -12,12 +12,14 @@ Config config here: [openwrt-tr3000.config](https://raw.githubusercontent.com/no
 
 # Enable Slider switch Custom Configuration
 ```shell
-# default: wifi ON/OFF
+# wifi ON/OFF
 vim /etc/hotplug.d/button/buttons
 ```
 # Reset Button Custom Configuration
 ```shell
-# default: 5/s  firstboot -y && reboot
+# lt 2/s none;
+# ge 2/s - 6/s reboot;
+# ge 6/s ：jffs2reset -y && reboot
 vim /etc/rc.button/reset
 ```
 
