@@ -23,13 +23,19 @@ if [ -e /etc/init.d/ttyd ];then
 EOF
 fi
 
-if [ -e /etc/rc.button/reset ];then
-	chmod +x /etc/rc.button/reset
-fi
-
 if [ -e /etc/hotplug.d/button/buttons ];then
 	chmod +x /etc/hotplug.d/button/buttons
 fi
+
+# Config Restart Button
+uci add system button
+uci set system.@button[-1].button="reset"
+uci set system.@button[-1].action="released"
+uci set system.@button[-1].handler="firstboot && reboot"
+uci set system.@button[-1].min="5"
+uci set system.@button[-1].max="30"
+uci commit system
+
 
 # 退出前，让系统在所有 uci-defaults 配置完成后自动完成重启/重载配置。
 exit 0
