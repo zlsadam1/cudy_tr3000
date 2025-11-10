@@ -5,13 +5,11 @@ system_cfg="system.@system[0]"
 config_dir="/etc/config"
 
 # --- 1. 时区设置 ---
-# 无论是否已设置，均执行配置，但避免不必要的 service restart
 uci batch<<EOF
 	set ${system_cfg}.zonename='Asia/Shanghai'
 	set ${system_cfg}.timezone='CST-8'
 	commit system
 EOF
-# service system restart # <-- 移除不必要的重启
 
 # --- 2. 设置软件源为中科大 ---
 sed -i 's_downloads.openwrt.org_mirrors.ustc.edu.cn/openwrt_' /etc/opkg/distfeeds.conf
@@ -23,26 +21,7 @@ if [ -e /etc/init.d/ttyd ];then
 	del ttyd.@ttyd[0].interface
 	commit ttyd
 EOF
-	# service ttyd restart # <-- 移除不必要的重启
 fi
-
-# --- 4. 赋予按键脚本权限 ---
-#if [ -e /usr/bin/handle-keys.sh ];then
-#	chmod +x /usr/bin/handle-keys.sh
-#fi
-
-# --- 5. 启用 handle-keys 服务自启动 ---
-#if [ -e /etc/init.d/handle-keys ];then
-    # 确保执行权限
-#    chmod +x /etc/init.d/handle-keys
-    
-    # 启用服务自启动 (创建 S99handle-keys 符号链接)
-#    /etc/init.d/handle-keys enable
-    
-    # 立即启动服务 (可选，如果想让按键在首次启动就工作)
-#	/etc/init.d/handle-keys start   
-#    logger -t uci-defaults "Enabled and started handle-keys service."
-#fi
 
 if [ -e /etc/rc.button/mode ];then
 	chmod +x /etc/rc.button/mode
