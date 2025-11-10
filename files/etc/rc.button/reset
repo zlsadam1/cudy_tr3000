@@ -6,19 +6,12 @@ LONG_PRESS_TIME=5
 logger "DEBUG: Reset script started. Action: $ACTION, Seen: $SEEN"
 
 [ "${ACTION}" = "released" ] && {
-    
     # SEEN 是按键按下的持续时间（秒），由 kmod-gpio-button-hotplug 提供
     if [ "${SEEN}" -ge "$LONG_PRESS_TIME" ]; then
-        # 长按逻辑：恢复出厂设置
         logger "Reset button long-pressed (${SEEN}s): Factory reset triggered!"
-        /sbin/mtd -r erase rootfs_data
+        firstboot -y && reboot
     else
-        # 短按逻辑：打印日志
         logger "Reset button short-pressed (${SEEN}s): Log printed."
     fi
 }
-# 其他 ACTION (如 pressed) 可以根据需要处理或留空
-
 exit 0
-
-# 确保有执行权限 (您的 ls -l 输出显示它已经有了)
