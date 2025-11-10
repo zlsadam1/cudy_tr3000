@@ -5,7 +5,7 @@
 
 # DEBUG: 检查极性是否反转，如果反转，通常 ACTION:released 对应 ON 状态
 
-logger "DEBUG: Mode script started. Action: $ACTION, Seen: $SEEN"
+logger "DEBUG: the button was ${BUTTON} and the action was ${ACTION}, Seen: $SEEN"
 
 case "$ACTION" in
     pressed) // 此时的释放可能对应了 ON 状态（极性定义与硬件不符）
