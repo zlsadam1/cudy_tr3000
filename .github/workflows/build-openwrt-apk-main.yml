@@ -1,4 +1,4 @@
-name: CUDY_TR3000_V1_114M_APK
+name: CUDY_TR3000_V1_114M_APK_MAIN
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: CUDY_TR3000_V1_114M_APK
+  FIRMWARE_TAG: CUDY_TR3000_V1_114M_APK_MAIN
   TZ: Asia/Shanghai
 
 jobs:
