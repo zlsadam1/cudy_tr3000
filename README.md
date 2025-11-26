@@ -25,41 +25,20 @@ vim /etc/rc.button/reset
 
 # Plug -in
 ```text
-luci-light=y
-luci-base=y
-luci-compat=y
-luci-lua-runtime=y
-luci-mod-admin-full=y
-luci-mod-network=y
-luci-mod-status=y
-luci-mod-system=y
 luci-app-adguardhome=y
 luci-app-autoreboot=y
 luci-app-ddns=y
 luci-app-diskman=y
-luci-app-diskman_INCLUDE_ntfs_3g_utils=y
-luci-app-diskman_INCLUDE_btrfs_progs=y
-luci-app-diskman_INCLUDE_lsblk=y
-luci-app-diskman_INCLUDE_mdadm=y
-luci-app-diskman_INCLUDE_kmod_md_raid456=y
-luci-app-diskman_INCLUDE_kmod_md_linears=y
 luci-app-filemanager=y
 luci-app-firewall=y
 luci-app-hd-idle=y
 luci-app-https-dns-proxy=y
-luci-app-natmap=y
+luci-app-natmapt=y
 luci-app-nft-qos=y
 luci-app-oaf=y
 luci-app-onliner=y
 luci-app-package-manager=y
-luci-app-passwall=y
-luci-app-passwall_Nftables_Transparent_Proxy=y
-luci-app-passwall_INCLUDE_Geoview=y
-luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=y
-luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
-luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
-luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
-luci-app-passwall_INCLUDE_Xray=y
+luci-app-xxxxwall=y
 luci-app-poweroff=y
 luci-app-pushbot=y
 luci-app-samba4=y
@@ -67,9 +46,6 @@ luci-app-socat=y
 luci-app-temp-status=y
 luci-app-ttyd=y
 luci-app-turboacc=y
-luci-app-turboacc_INCLUDE_OFFLOADING=y
-luci-app-turboacc_INCLUDE_BBR_CCA=y
-luci-app-turboacc_INCLUDE_NFT_FULLCONE=y
 luci-app-uhttpd=y
 luci-app-upnp=y
 luci-app-usb-printer=y
@@ -77,18 +53,12 @@ luci-app-vlmcsd=y
 luci-app-wifischedule=y
 luci-app-wol=y
 luci-app-wrtbwmon=y
-luci-theme-argon=y
-luci-theme-bootstrap=y
 luci-proto-ipv6=y
 luci-proto-ppp=y
 luci-proto-relay=y
 luci-proto-wireguard=y
-luci-lib-base=y
-luci-lib-ip=y
-luci-lib-ipkg=y
-luci-lib-jsonc=y
-luci-lib-nixio=y
-luci-lib-uqr=y
+luci-theme-argon=y
+luci-theme-bootstrap=y
 ```
 
 # Actions-OpenWrt
