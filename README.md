@@ -7,7 +7,7 @@
 ```
 
 # Config
-Config Buildinfo here: [config.buildinfo](https://github.com/nova-boop/cudy_tr3000/releases/download/CUDY_TR3000_V1_114M_APK/config.buildinfo)
+Config Buildinfo here: [config.buildinfo](https://github.com/nova-boop/cudy_tr3000/releases/download/CUDY_TR3000_V1_114M_OP_24_10_4/config.buildinfo)
 Config config here: [openwrt-tr3000.config](https://raw.githubusercontent.com/nova-boop/cudy_tr3000/refs/heads/main/OpenWrt-OPKG-TR3000.config)
 
 # Enable Slider switch Custom Configuration
