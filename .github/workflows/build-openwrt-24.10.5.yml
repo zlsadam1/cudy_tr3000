@@ -19,7 +19,7 @@ env:
 
 jobs:
   Build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Check Server Performance
@@ -121,6 +121,9 @@ jobs:
     - name: Change golang version
       run: |
         cd $OPENWRT_PATH
+
+        echo "go version"
+        go version
         
         # change golang version
         # echo "ls -lh golang"
