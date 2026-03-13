@@ -47,6 +47,12 @@ function git_sparse_clone() {
 addFeeds custom https://github.com/kenzok8/openwrt-packages.git
 addFeeds small https://github.com/kenzok8/small.git
 
+# top install
+sed -i '1i\
+src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\
+src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
+
+
 # 支持 turboacc
 # 不带 shortcut-fe
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
@@ -115,7 +121,7 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 # luci-app-airplay2
 # git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
-git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
+# git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
 
 # cd OpenWrt buildroot 
 # mkdir -p "package/cdnspeedtest"
