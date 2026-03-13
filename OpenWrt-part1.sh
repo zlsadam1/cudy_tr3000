@@ -115,7 +115,7 @@ git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-
 # luci-app-airplay2
 # git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
 
-git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
+# git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
 
 # cd OpenWrt buildroot 
 # mkdir -p "package/cdnspeedtest"
