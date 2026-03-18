@@ -37,20 +37,10 @@ function git_sparse_clone() {
 }
 
 
-# Uncomment a feed source
-
-# sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-
-# addFeeds passwall_packages "https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main"
-# addFeeds passwall_luci "https://github.com/Openwrt-Passwall/openwrt-passwall.git;main"
-
-addFeeds custom https://github.com/kenzok8/openwrt-packages.git
-addFeeds small https://github.com/kenzok8/small.git
-
 # top install
-#sed -i '1i\
-#src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\
-#src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
+sed -i '1i\
+src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\
+src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
 
 
 # 支持 turboacc
@@ -74,23 +64,23 @@ git clone --depth=1 https://github.com/zzsj0928/luci-app-pushbot package/luci-ap
 git_sparse_clone main https://github.com/chenmozhijin/luci-app-socat luci-app-socat
 
 # 定时重启
-git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
+# git clone https://github.com/zxl78585/luci-app-autoreboot.git package/luci-app-autoreboot
 
 # 磁盘管理
-git clone --depth=1 https://github.com/lisaac/luci-app-diskman package/luci-app-diskman
+# git clone --depth=1 https://github.com/lisaac/luci-app-diskman package/luci-app-diskman
 
 # 温度插件
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # 带宽监控+在线设备，相互依赖
-git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner
+# git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner
 
 # usb打印+网络唤醒Plus
 git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
-git clone --depth=1 https://github.com/Dboykey/luci-app-usb-printer package/luci-app-usb-printer
+# git clone --depth=1 https://github.com/Dboykey/luci-app-usb-printer package/luci-app-usb-printer
 
 # kms
-git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
+# git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
 
 
 # natmapt
@@ -112,38 +102,8 @@ umask 022
 git checkout
 popd
 
-# git_sparse_clone master https://github.com/muink/openwrt-stuntman stuntman
-# git_sparse_clone master https://github.com/muink/luci-app-natmapt luci-app-natmapt
-
 # SMS tools
-git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
-
-# luci-app-airplay2
-# git_sparse_clone luci19 https://github.com/tcsr200722/openwrt-luci-app luci-app-airplay2
-
-# git_sparse_clone main https://github.com/kenzok8/small-package dns2socks ipt2socks microsocks
-
-# cd OpenWrt buildroot 
-# mkdir -p "package/cdnspeedtest"
-# curl -fL "https://raw.githubusercontent.com/immortalwrt/packages/master/net/cdnspeedtest/Makefile" | sed 's,../../lang,$(TOPDIR)/feeds/packages/lang,' > "package/cdnspeedtest/Makefile"
-# # buildroot menuconfig
-# # check Network -> cdnspeedtest
-# # Network  --->
-# # <*> cdnspeedtest.............. Getting the fastest ips to your network of CDN
+# git_sparse_clone master https://github.com/4IceG/luci-app-sms-tool luci-app-sms-tool sms-tool
 
 # 
 ./scripts/feeds update -a
-
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
-rm -rf feeds/packages/utils/v2dat
-
-# remove 
-ls -lh feeds/small/
-rm -rf feeds/small/{luci-app-bypass,luci-app-ssr-plus}
-
-echo  "--------------------------------------------------------------"
-find ./ -name luci-app-store
-rm -rf feeds/custom/{luci-app-store}
-rm -rf package/feeds/custom/luci-app-store
-echo  "--------------------------------------------------------------"
