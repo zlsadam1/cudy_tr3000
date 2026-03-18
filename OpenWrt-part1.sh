@@ -83,6 +83,12 @@ git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
 # git_sparse_clone master https://github.com/DokiDuck/luci-app-vlmcsd luci-app-vlmcsd vlmcsd
 
 
+# theme
+git clone --depth=1  https://github.com/eamonxg/luci-theme-aurora package/luci-theme-aurora
+git clone --depth=1  https://github.com/eamonxg/luci-app-aurora-config package/luci-app-aurora-config
+
+git_sparse_clone openwrt-25.12  https://github.com/sbwml/luci-theme-argon luci-theme-argon luci-app-argon-config
+
 # natmapt
 git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/openwrt-stuntman.git package/stuntman
 pushd package/stuntman
