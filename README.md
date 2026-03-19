@@ -2,13 +2,12 @@
 
 # Version 
 ```text
-  CUDY_TR3000_V1_114M_APK    :  snapshot latest
-  CUDY_TR3000_V1_114M_OP_24_10_4:  tag v24.10.4
+  CUDY_TR3000_V1_114M_IM_25_12:  tag openwrt-25.12
 ```
 
 # Config
-Config Buildinfo here: [config.buildinfo](https://github.com/nova-boop/cudy_tr3000/releases/download/CUDY_TR3000_V1_114M_OP_24_10_4/config.buildinfo)
-Config config here: [openwrt-tr3000.config](https://raw.githubusercontent.com/nova-boop/cudy_tr3000/refs/heads/main/OpenWrt-OPKG-TR3000.config)
+Config Buildinfo here: [config.buildinfo](https://github.com/nova-boop/cudy_tr3000/releases/download/CUDY_TR3000_V1_114M_IM_25_12/config.buildinfo)
+Config config here: [openwrt-tr3000.config](https://raw.githubusercontent.com/nova-boop/cudy_tr3000/refs/heads/main/OpenWrt-TR3000.config)
 
 # Enable Slider switch Custom Configuration
 ```shell
@@ -27,23 +26,19 @@ vim /etc/rc.button/reset
 ```text
 luci-app-adguardhome=y
 luci-app-autoreboot=y
+luci-app-cloudflared=y
 luci-app-ddns=y
 luci-app-diskman=y
-luci-app-filemanager=y
-luci-app-firewall=y
 luci-app-hd-idle=y
 luci-app-https-dns-proxy=y
 luci-app-natmapt=y
 luci-app-nft-qos=y
 luci-app-oaf=y
-luci-app-onliner=y
-luci-app-package-manager=y
 luci-app-xxxxwall=y
 luci-app-poweroff=y
 luci-app-pushbot=y
 luci-app-samba4=y
 luci-app-socat=y
-luci-app-temp-status=y
 luci-app-ttyd=y
 luci-app-turboacc=y
 luci-app-uhttpd=y
@@ -51,8 +46,7 @@ luci-app-upnp=y
 luci-app-usb-printer=y
 luci-app-vlmcsd=y
 luci-app-wifischedule=y
-luci-app-wol=y
-luci-app-wrtbwmon=y
+luci-app-wolplus=y
 luci-proto-ipv6=y
 luci-proto-ppp=y
 luci-proto-relay=y
@@ -82,6 +76,7 @@ Build OpenWrt using GitHub Actions
 - [Microsoft Azure](https://azure.microsoft.com)
 - [GitHub Actions](https://github.com/features/actions)
 - [OpenWrt](https://github.com/openwrt/openwrt)
+- [Immortalwrt](https://github.com/immortalwrt/immortalwrt)
 - [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
 - [tmate](https://github.com/tmate-io/tmate)
 - [mxschmitt/action-tmate](https://github.com/mxschmitt/action-tmate)
