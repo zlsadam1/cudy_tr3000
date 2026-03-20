@@ -1,4 +1,4 @@
-# CUDY TR3000 V1 114M OpenWrt
+# CUDY TR3000 V1 114M Immortalwrt
 
 # Version 
 ```text
