@@ -230,6 +230,10 @@ jobs:
     - name: Organize Files
       if: steps.compile.outputs.status == 'success'
       run: |
+        cd $OPENWRT_PATH
+        make defconfig
+        ./scripts/diffconfig.sh > $CONFIG_FILE
+        
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
