@@ -49,16 +49,12 @@ cat package/base-files/files/bin/config_generate |grep 192
 
 
 # Temperature
+#!/bin/bash
 JS_PATH="feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js"
-# 1.
-sed -i "/uci.load('system')/s/$/,\n\t\t\tL.resolveDefault(fs.exec_direct('for i in \/sys\/class\/hwmon\/hwmon*\/name; do echo -n \$(cat \$i):\$(cat \$(dirname \$i)\/temp1_input) \" \"; done'), '')/" $JS_PATH
-# 2.
-sed -i "/luciversion = data\[6\],/a \t\t\tcustomTemp  = data[9];\n\t\tvar t = {}; customTemp.trim().split(/\\\\s+/).forEach(function(l) { var p = l.split(':'); if (p.length === 2) t[p[0]] = (parseInt(p[1]) \/ 1000).toFixed(1); });\n\t\tvar tempVal = 'CPU: ' + (t['cpu_thermal'] || 'N/A') + '°C ' + 'WiFi: ' + (t['mt7915_phy0'] || 'N/A') + '°C ' + (t['mt7915_phy1'] || 'N/A') + '°C';" $JS_PATH
-# 3.
+sed -i "s/uci.load('system')/&,\n\t\t\tL.resolveDefault(fs.exec_direct('for i in \/sys\/class\/hwmon\/hwmon*\/name; do echo -n \$(cat \$i):\$(cat \$(dirname \$i)\/temp1_input) \" \"; done'), '')/" $JS_PATH
+sed -i "/luciversion = luciversion.branch/i \ \t\tvar customTemp = data[9] || ''; var t = {}; customTemp.trim().split(/\\\\s+/).forEach(function(l) { var p = l.split(':'); if (p.length === 2) t[p[0]] = (parseInt(p[1]) \/ 1000).toFixed(1); }); var tempVal = 'CPU: ' + (t['cpu_thermal'] || 'N/A') + '°C ' + 'WiFi: ' + (t['mt7915_phy0'] || 'N/A') + '°C ' + (t['mt7915_phy1'] || 'N/A') + '°C';" $JS_PATH
 sed -i "/_('Architecture'),/a \\t\t\t_('Temperature'),      tempVal," $JS_PATH
-# 4. 
-sed -i "/if (tempinfo.tempinfo) {/,/}/s/^/\/\//" $JS_PATH
-# 5. 
+sed -i '/if (tempinfo.tempinfo) {/,/}/ s/^/\/\//' $JS_PATH
 PO_FILE="feeds/luci/modules/luci-base/po/zh_Hans/base.po"
 if ! grep -q "Temperature" "$PO_FILE"; then
     echo -e '\nmsgid "Temperature"\nmsgstr "温度"' >> "$PO_FILE"
