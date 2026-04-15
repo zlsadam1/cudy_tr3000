@@ -47,3 +47,24 @@ export FORCE_UNSAFE_CONFIGURE=1
 echo -e "view log check br-lan ip"
 cat package/base-files/files/bin/config_generate |grep 192
 
+# Temperature
+JS_FILE="feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js"
+PO_FILE="feeds/luci/modules/luci-base/po/zh_Hans/base.po"
+
+sed -i "/uci.load('system')/s/$/,\n\t\t\tL.resolveDefault(fs.exec('\/bin\/sh', ['-c', 'cat \/sys\/class\/hwmon\/hwmon*\/temp1_input']), {})/" $JS_FILE
+
+sed -i "/unixtime    = data\[7\];/a \ \t\t    tempData    = data[9];" $JS_FILE
+
+sed -i "/luciversion = luciversion.branch/a \ \t\tvar stdout = (tempData \&\& tempData.stdout) ? tempData.stdout.trim() : ''; var lines = stdout.split(/\\\\s+/); var cT = lines[1] ? (parseInt(lines[1])\/1000).toFixed(1) : (lines[0] ? (parseInt(lines[0])\/1000).toFixed(1) : 'N/A'); var w1 = lines[2] ? (parseInt(lines[2])\/1000).toFixed(1) : 'N/A'; var w2 = lines[3] ? (parseInt(lines[3])\/1000).toFixed(1) : 'N/A'; var tempVal = 'CPU: ' + cT + '°C WiFi: ' + w1 + '°C ' + w2 + '°C';" $JS_FILE
+
+sed -i "/_('CPU usage (%)'),/s/$/ ,/" $JS_FILE
+sed -i "/_('CPU usage (%)'),/a \ \t\t\t_('Temperature'),      tempVal" $JS_FILE
+
+sed -i '/if (tempinfo.tempinfo) {/,/}/ s/^/\/\//' $JS_FILE
+
+
+if [ -f "$PO_FILE" ]; then
+    if ! grep -q "Temperature" "$PO_FILE"; then
+        echo -e '\nmsgid "Temperature"\nmsgstr "温度"' >> "$PO_FILE"
+    fi
+fi
