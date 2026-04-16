@@ -54,8 +54,9 @@ PO_FILE="feeds/luci/modules/luci-base/po/zh_Hans/base.po"
 sed -i "s/uci.load('system')/&,\n\t\t\tL.resolveDefault(fs.exec('\/bin\/sh', ['-c', 'cat \/sys\/class\/hwmon\/hwmon*\/temp1_input']), {})/" $JS_FILE
 sed -i "/unixtime    = data\[7\];/a \ \t\tvar tempData    = data[9] || {};" $JS_FILE
 sed -i "/luciversion = luciversion.branch/a \ \t\tvar stdout = (tempData \&\& tempData.stdout) ? tempData.stdout.trim() : ''; var lines = stdout.split(/\\\\s+/); var cT = lines[1] ? (parseInt(lines[1])\/1000).toFixed(1) : (lines[0] ? (parseInt(lines[0])\/1000).toFixed(1) : 'N/A'); var w1 = lines[2] ? (parseInt(lines[2])\/1000).toFixed(1) : 'N/A'; var w2 = lines[3] ? (parseInt(lines[3])\/1000).toFixed(1) : 'N/A'; var tempVal = 'CPU: ' + cT + '°C WiFi: ' + w1 + '°C ' + w2 + '°C';" $JS_FILE
-sed -i "/_('CPU usage (%)'),/s/$/ ,/" $JS_FILE
-sed -i "/_('CPU usage (%)'),/a \ \t\t\t_('Temperature'),      tempVal" $JS_FILE
+
+sed -i "/_('Architecture'),/a \ \t\t\t_('Temperature'),      tempVal," $JS_FILE
+
 sed -i '/if (tempinfo.tempinfo) {/,/}/ s/^/\/\//' $JS_FILE
 
 if [ -f "$PO_FILE" ]; then
