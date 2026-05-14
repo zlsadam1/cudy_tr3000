@@ -208,9 +208,9 @@ jobs:
         echo -e "print {scons} \n "
         grep -r "scons" feeds/ package/ --include="Makefile" || true
 
-        echo -e "rm  feeds/packages/devel/scons/patches/001-platform_env.patch"
-        rm -f feeds/packages/devel/scons/patches/001-platform_env.patch
-        echo -e "rm scons ok"
+        # echo -e "rm  feeds/packages/devel/scons/patches/001-platform_env.patch"
+        # rm -f feeds/packages/devel/scons/patches/001-platform_env.patch
+        # echo -e "rm scons ok"
         
     - name: Compile Firmware
       id: compile
