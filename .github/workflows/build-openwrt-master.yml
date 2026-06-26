@@ -3,7 +3,7 @@ name: CUDY_TR3000_V1_114M_IM_MASTER
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 19 * * *
+    - cron: 0 19 */5 * *
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
@@ -287,7 +287,7 @@ jobs:
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本: ${{ env.KERNEL }}
-          - 🌐 默认地址: 192.168.9.1
+          - 🌐 默认地址: 192.168.102.1
           - 🔑 默认密码: password
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
