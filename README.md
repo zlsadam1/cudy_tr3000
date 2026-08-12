@@ -24,29 +24,17 @@ vim /etc/rc.button/reset
 
 # Plug -in
 ```text
-luci-app-adguardhome=y
 luci-app-autoreboot=y
-luci-app-cloudflared=y
-luci-app-ddns=y
 luci-app-diskman=y
-luci-app-hd-idle=y
-luci-app-https-dns-proxy=y
-luci-app-natmapt=y
 luci-app-nft-qos=y
 luci-app-oaf=y
 luci-app-xxxxwall=y
 luci-app-poweroff=y
-luci-app-pushbot=y
-luci-app-samba4=y
-luci-app-socat=y
 luci-app-ttyd=y
 luci-app-turboacc=y
 luci-app-uhttpd=y
 luci-app-upnp=y
-luci-app-usb-printer=y
 luci-app-vlmcsd=y
-luci-app-wifischedule=y
-luci-app-wolplus=y
 luci-proto-ipv6=y
 luci-proto-ppp=y
 luci-proto-relay=y
